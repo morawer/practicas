@@ -1,7 +1,14 @@
 import java.util.Scanner;
 
 public class App {
+    
+    /** 
+     * @param args
+     * @throws Exception
+     */
     public static void main(String[] args) throws Exception {
+
+        //creamos las preguntas al usuario y las variables donde se almacenaran sun respuestas.
 
         Scanner sc = new Scanner(System.in);
 
@@ -10,6 +17,7 @@ public class App {
 
         System.out.println("Introduce 4 numeros: ");
 
+        //Creamos los objetos, en los cuales meteremos como atributos los datos var y lector.
         int var;
         var = sc.nextInt();
         Thread numThread1 = new Thread(new numeroPrimo(var,lector));
@@ -22,6 +30,8 @@ public class App {
 
         var = sc.nextInt();
         Thread numThread4 = new Thread(new numeroPrimo(var, lector));
+
+        //Ejecutamos los hilos.
 
         numThread1.start();
         numThread2.start();

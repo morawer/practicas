@@ -1,10 +1,15 @@
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class numeroPrimo implements Runnable {
 
     private int numero;
+    private String guardar;
     private double tiempo;
 
-    public numeroPrimo(int numero) {
+    public numeroPrimo(int numero, String guardar) {
         this.setNumero(numero);
+        this.setGuardar(guardar);
     }
 
     public int getNumero() {
@@ -13,6 +18,14 @@ public class numeroPrimo implements Runnable {
 
     public void setNumero(int numero) {
         this.numero = numero;
+    }
+
+    public String getGuardar() {
+        return guardar;
+    }
+
+    public void setGuardar(String guardar) {
+        this.guardar = guardar;
     }
 
     public double getTiempo() {
@@ -28,7 +41,7 @@ public class numeroPrimo implements Runnable {
 
         double inicio = System.currentTimeMillis();
         double fin = 0;
-        boolean prime = true;
+        boolean primo = true;
 
         for (int i = 2; i < numero; i++) {
 
@@ -39,7 +52,7 @@ public class numeroPrimo implements Runnable {
             }
 
             if (numero % i == 0) {
-                prime = false;           
+                primo = false;
                 break;
             }
         }
@@ -49,15 +62,30 @@ public class numeroPrimo implements Runnable {
 
         setTiempo(tiempo);
 
-        if (prime) {
+        System.out.println(ifPrimo(primo));
 
-            System.out.println("El numero " + getNumero() + " es primo. EL HILO ES: " + Thread.currentThread().getName()
-                    + " El tiempo fue de: " + getTiempo());
-        } else {
-            System.out.println("El numero " + getNumero() + " no es primo. EL HILO ES: " + Thread.currentThread().getName()
-                    + " El tiempo fue de: " + getTiempo());
+        if (getGuardar().equalsIgnoreCase("si")) {
+
+            try {
+                FileWriter archivo = new FileWriter(Thread.currentThread().getName() + ".txt", true);
+                archivo.write(ifPrimo(primo));
+                archivo.close();
+
+            } catch (IOException e) {
+                System.out.println("Ha ocurrido un error.");
+                e.printStackTrace();
+            }
         }
-
     }
 
+    private String ifPrimo(boolean primo) {
+
+        if (primo) {
+            return "HILO: " + Thread.currentThread().getName() + " || TIEMPO: " + getTiempo() + " seg."
+            + " || El numero " + getNumero() + " es primo.\n";
+        } else {
+            return "HILO: " + Thread.currentThread().getName() + " || TIEMPO: " + getTiempo() + " seg."
+            + " || El numero " + getNumero() + " no es primo.\n";
+        }
+    }
 }

@@ -1,27 +1,56 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Práctica 1 - Desarrollo de Interfaces</title>
     <script src="codejs.js"></script>
 </head>
+
 <body>
-    
     <form name="formularioCarro">
+        <p>
+            Nombre del artículo:
+            <input type="text" name="nombre" placeholder="Nombre del artículo" />
+        </p>
+        <p>
+            Precio del artículo:
+            <input type="number" name="precio" />
+        </p>
+        <p>
+            Unidades:
+            <input type="number" name="unidades" />
+        </p>
+        <p>
+            <input type="button" name="addCarro" value="Añadir al carrito" />
+        </p>
 
-        <p>Nombre del Artículo:</p>
-        <input type="text" name="nombre" placeholder="Nombre del artículo"/>
-
-        <p>Precio:</p>
-        <input type="number" name="precio"/>
-
-        <p>Unidades:</p>
-        <input type="number" name="unidades"/>
-
-        <p><input type="button" name="addCarro" value="Añadir al carrito"/></p>
+        <p>
+            Articulos en el carrito:
+            <input type="text" name="artCarro" />
+        </p>
+        <p>
+            Precio total del carrito:
+            <input type="text" name="precioCarro" />
+        </p>
+        <p>
+            Forma de pago:
+            <select name="tipoPago">
+                <option value="visa">Visa</option>
+                <option value="efectivo">Efectivo</option>
+                <option value="paypal">Paypal</option>
+            </select>
+        </p>
+        <p>
+            <input type="checkbox" name="condiciones"> Acepto las condiciones de compra.
+        </p>
+        <p>
+            <input type="button" value="Imprimir" disabled>
+            <input type="reset" value="Restablecer">
+        </p>
 
     </form>
-    
 </body>
+
 </html>

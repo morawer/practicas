@@ -34,23 +34,34 @@
         </p>
         <p>
             Precio total del carrito:
-            <input type="number" name="precioCarro" value=""/>
+            <input type="text" name="precioCarro" value=""/>
         </p>
         <p>
             Forma de pago:
             <select name="tipoPago">
+                <option value="seleccion">Seleccione</option>
                 <option value="visa">Visa</option>
-                <option value="efectivo">Efectivo</option>
-                <option value="paypal">Paypal</option>
+                <option value="efectivo">Efectivo</option>             
             </select>
         </p>
+
+        <div id="tarjeta">
+            Titular de la tarjeta: <input type="text" size="25" name="titular"><br></br>
+            Número de la tarjeta: <input type="text" size="16" name="numTarjeta"><br></br>
+            CVV: <input type="text" size="3" name="cvv"><br></br>
+        </div>
+
+        <div id="efectivo">
+            Importe efectivo: <input type="text" size="10" name="impEfectivo"><br></br>
+        </div>
+        
         <p>
-            <input type="checkbox" name="condiciones" /> Acepto las condiciones de
+            <input type="checkbox" name="condiciones" value="aceptar"/> Acepto las condiciones de
             compra.
         </p>
         <p>
-            <input type="button" value="Imprimir" disabled />
-            <input type="reset" value="Restablecer" />
+            <input type="button" name = "imprimir" value="Imprimir" disabled/>
+            <input type="button" name="restablecer" value="Restablecer" />
         </p>
     </form>
 </body>

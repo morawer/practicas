@@ -6,63 +6,66 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Práctica 1 - Desarrollo de Interfaces</title>
     <script src="codejs.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
 <body>
     <form name="formulario">
-        <p>
-            Nombre del artículo:
-            <input type="text" name="nombre" value="" autofocus = "" />
-            <span id="errorNombre"></span>
-        </p>
-        <p>
-            Precio del artículo:
-            <input type="text" name="precio" value=""  />
-            <span id="errorPrecio"></span>
-        </p>
-        <p>
-            Unidades:
-            <input type="number" name="unidades" value="1" />
-        </p>
-        <p>
-            <input type="button" name="addCarro" value="Añadir al carrito" />
-        </p>
+        <div id="entrada">
+            <fieldset>
+                <legend>Introduzca los articulos:</legend>
+                Nombre del artículo:
+                <input type="text" name="nombre" value="" autofocus="" />
+                <span id="errorNombre"></span><br></br>
 
-        <p>
-            Articulos en el carrito:
-            <input type="text" name="artCarro" value="" />
-        </p>
-        <p>
-            Precio total del carrito:
-            <input type="text" name="precioCarro" value=""/>
-        </p>
-        <p>
-            Forma de pago:
-            <select name="tipoPago">
-                <option value="seleccion">Seleccione</option>
-                <option value="visa">Visa</option>
-                <option value="efectivo">Efectivo</option>             
-            </select>
-        </p>
+                Precio del artículo:
+                <input type="text" name="precio" value="" />
+                <span id="errorPrecio"></span><br></br>
 
-        <div id="tarjeta">
-            Titular de la tarjeta: <input type="text" size="25" name="titular"><br></br>
-            Número de la tarjeta: <input type="text" size="16" name="numTarjeta"><br></br>
-            CVV: <input type="text" size="3" name="cvv"><br></br>
+                Unidades:
+                <input type="number" name="unidades" value="1" size="3" /><br></br>
+
+                <input type="button" name="addCarro" value="Añadir al carrito" /><br>
+            </fieldset>
+        </div>
+        <div id="resumen">
+            <fieldset>
+                <legend>Resumen:</legend>
+                Articulos en el carrito:
+                <input type="text" name="artCarro" value="" /><br></br>
+
+                Precio total del carrito:
+                <input type="text" name="precioCarro" value="" /><br>
+            </fieldset>
         </div>
 
-        <div id="efectivo">
-            Importe efectivo: <input type="text" size="10" name="impEfectivo"><br></br>
+        <div id="confirmacion">
+            <fieldset>
+                <legend>Confirmación de compra:</legend>
+                Forma de pago:
+                <select name="tipoPago">
+                    <option value="seleccion">Seleccione</option>
+                    <option value="visa">Visa</option>
+                    <option value="efectivo">Efectivo</option>
+                </select><br></br>
+
+                <div id="tarjeta">
+                    Titular de la tarjeta: <input type="text" size="25" name="titular"><br></br>
+                    Número de la tarjeta: <input type="text" size="16" name="numTarjeta"><br></br>
+                    CVV: <input type="text" size="3" name="cvv"><br></br>
+                </div>
+
+                <div id="efectivo">
+                    Importe efectivo: <input type="text" size="10" name="impEfectivo"><br></br>
+                </div>
+
+                <input type="checkbox" name="condiciones" value="aceptar" /> Acepto las condiciones de
+                compra.<br></br>
+
+                <input type="button" name="imprimir" value="Imprimir" disabled />
+                <input type="button" name="restablecer" value="Restablecer" /><br>
+            </fieldset>
         </div>
-        
-        <p>
-            <input type="checkbox" name="condiciones" value="aceptar"/> Acepto las condiciones de
-            compra.
-        </p>
-        <p>
-            <input type="button" name = "imprimir" value="Imprimir" disabled/>
-            <input type="button" name="restablecer" value="Restablecer" />
-        </p>
     </form>
 </body>
 

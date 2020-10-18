@@ -1,3 +1,4 @@
+//Creación de variables.
 var nombreItem;
 var precioItem;
 var unidadesItem;
@@ -24,6 +25,8 @@ function inicializar() {
     imprimir = document.formulario.imprimir;
 }
 
+//Funcion para imprimir con un "alert" la lista de productos y precio total
+//o un "alert" de advertencia sino se ha seleccionado el tipo de pago.
 function print() {
     if (tipoPago.value == "seleccion") {
         alert("Por favor, seleccione un tipo de pago.");
@@ -33,7 +36,8 @@ function print() {
             "-La forma de pago es: " + tipoPago.value + ".");
     }
 }
-
+//Funcion para habilitar el boton "Imprimir" si es marcado el checkbox
+//condiciones de compra.
 function condicion() {
     if (checkBox.checked == true) {
         imprimir.disabled = false;
@@ -41,7 +45,8 @@ function condicion() {
         imprimir.disabled = true;
     }
 }
-
+//Funcion para mostrar u ocultar las diferentes "div" de tipo de pago
+//según la selección.
 function seleccionPago() {
     if (tipoPago.value == "seleccion") {
         tarjeta.style.display = "none";
@@ -56,7 +61,8 @@ function seleccionPago() {
         efectivo.style.display = "block";
     }
 }
-
+//Funcion para poner en blanco los diferentes "input text" y a 1 el
+//"input number" la cual, es activada cuando es añadido un nuevo articulo.
 function reset() {
     nombreItem.value = "";
     precioItem.value = "";
@@ -65,6 +71,9 @@ function reset() {
     errorPrecio.innerHTML = "";
 }
 
+//Funcion activada cuando es clicado el boton "Restablecer"
+//pone en blanco los diferentes "input text", a 1 el "input number"
+//y vacia el array "listaItem" y la variable precioSuma se iguala a 0.
 function resetTotal() {
     nombreItem.value = "";
     precioItem.value = "";
@@ -77,11 +86,17 @@ function resetTotal() {
     precioTotal.value = "";
 }
 
+//Funcion que recoje en variable elprecio del item y lo
+//multiplica por el numero de unidades.
 function verPrecios() {
     precioSuma += (precioItem.value * unidadesItem.value);
     precioTotal.value = precioSuma + " €";
 }
 
+//Funcion que recoje el nombre del los articulos y los
+//introduce en el array "listaItem", a su vez imprime
+//los articulos a traves de un "for" en y los muestra
+//en "artTotal.value".
 function verArticulos() {
     listaItem.push(nombreItem.value);
 
@@ -96,7 +111,9 @@ function verArticulos() {
     }
     artTotal.value = totalNombre;
 }
-
+//Funcion para la validacion de los datos introducidos.
+//Si el usuario no introduce nombre de item aparecerá 
+//un mensaje de "Falta articulo".
 function validacionNombre() {
     if (nombreItem.value == "") {
         errorNombre.innerHTML = "Falta artículo";
@@ -105,6 +122,11 @@ function validacionNombre() {
     }
 }
 
+//Funcion para validar que el precio introducido por 
+//el usuario es correcto. Si no introduce el precio
+//aparecera el mensaje "Falta precio" y si introduce en el 
+//casillero "precioItem.value" letras o caracteres no permitidos
+//aparecerá el mensaje "Tipo de daato incorrecto".
 function validacionPrecio() {
     if (precioItem.value == "") {
         errorPrecio.innerHTML = "Falta precio.";
@@ -118,6 +140,7 @@ function validacionPrecio() {
     }
 }
 
+//Funcion que recopila los diferentes "AddEvenListener"
 function eventos() {
     addCarro.addEventListener("click", addCarrito);
     tipoPago.addEventListener("change", seleccionPago);
@@ -126,6 +149,10 @@ function eventos() {
     imprimir.addEventListener("click", print);
 }
 
+//Funcion que interrumpe la introduccion de articulos
+//en el array y la acumulacion del precio en la
+//sumaPrecio sino se cumplen las condiciones de
+//validacion de nombre y precio.
 function addCarrito() {
     validacionNombre();
     validacionPrecio();

@@ -1,7 +1,5 @@
 import java.util.LinkedList;
 import java.util.Queue;
-import Correos.Correo;
-
 
 public class Cola {
 

@@ -1,4 +1,6 @@
 public class Correo {
+
+    public static int numId = 1;
     private int id;
     private String destinatario;
     private String remitente;
@@ -7,10 +9,6 @@ public class Correo {
 
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getDestinatario() {
@@ -47,7 +45,15 @@ public class Correo {
 
     @Override
     public String toString() {
-        return "Correo [asunto=" + asunto + ", cuerpo=" + cuerpo + ", destinatario=" + destinatario + ", id=" + id
-                + ", remitente=" + remitente + "]";
-    } 
+        return "Correo [id=" + id + ", asunto=" + asunto + ", cuerpo=" + cuerpo + 
+        ", destinatario=" + destinatario +  ", remitente=" + remitente + "]";
+    }
+
+    public Correo(String destinatario, String remitente, String asunto, String cuerpo) {
+        id = Correo.numId++; 
+        this.destinatario = destinatario;
+        this.remitente = remitente;
+        this.asunto = asunto;
+        this.cuerpo = cuerpo;
+    }
 }

@@ -1,3 +1,4 @@
+
 public class Consumidor extends Thread {
 
     public String nombre;
@@ -13,6 +14,9 @@ public class Consumidor extends Thread {
         for (int i = 1; i <= 15; i++) {
             Correo correo = cola.getCorreo();
             System.out.println(nombre + " consume: " + correo);
+            if (correo.getId() == 30)
+            i=+2;
         }
+        System.out.println("FIN!! " + Thread.currentThread());
     }
 }

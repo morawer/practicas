@@ -9,10 +9,6 @@ public class GenerarCorreo {
 		return correo;
 	}
 
-	/*
-	 * public int generarId() { numeroId++; return numeroId; }
-	 */
-
 	public String generarDestinatario() {
 		List<String> listaDestinatario = new ArrayList<String>();
 		listaDestinatario.add("pikachu@gmail.com");
@@ -89,5 +85,4 @@ public class GenerarCorreo {
 
 	public GenerarCorreo() {
 	}
-
 }

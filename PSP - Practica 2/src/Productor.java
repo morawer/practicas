@@ -2,7 +2,6 @@ public class Productor extends Thread {
 
     public String nombre;
 	public Cola cola;
-	
 	public Productor(String nombre, Cola cola){
 		super();
 		this.nombre = nombre;
@@ -16,6 +15,7 @@ public class Productor extends Thread {
 			System.out.println(nombre + " produce: " + correo.getId());
 			cola.addCorreo(correo);
 		}
+		System.out.println(Thread.currentThread() + " ha terminado."); 
 	}
     
 }

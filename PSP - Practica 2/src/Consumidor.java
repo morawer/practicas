@@ -14,8 +14,9 @@ public class Consumidor extends Thread {
         for (int i = 1; i <= 15; i++) {
             Correo correo = cola.getCorreo();
             System.out.println(nombre + " consume: " + correo);
-            if (correo.getId() == 30)
-            i=+2;
+            if(cola.contador == 30 && cola.cola.isEmpty()){
+                break;
+            }
         }
         System.out.println("FIN!! " + Thread.currentThread());
     }

@@ -9,8 +9,11 @@ public class Main {
 		Consumidor c1 = new Consumidor("Consumidor 1",cola);
 		Consumidor c2 = new Consumidor("Consumidor 2",cola);
 		
+		p1.setPriority(10);
 		p1.start();
+		p2.setPriority(5);
 		p2.start();
+		p3.setPriority(1);
 		p3.start();
 
 		c1.start();

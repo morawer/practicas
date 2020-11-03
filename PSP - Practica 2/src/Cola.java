@@ -5,6 +5,7 @@ public class Cola {
 
     public static final int COLA_MAXIMO = 5;
     public Queue<Correo> cola = new LinkedList<>();
+    public int contador = 0;
 
     synchronized void addCorreo(Correo correo) {
 
@@ -12,6 +13,7 @@ public class Cola {
             if (correo.getDestinatario().equals("pikachu@gmail.com")) {
                 System.out.println(
                         "Se deshecha email con ID: " + correo.getId() + " con destino " + correo.getDestinatario());
+                        contador++;
             } else {
                 try {
                     Thread.sleep(500);
@@ -19,6 +21,7 @@ public class Cola {
                     e.printStackTrace();
                 }
                 cola.offer(correo);
+                contador++;
             }
         }
         while (cola.size() == COLA_MAXIMO) {
@@ -33,7 +36,7 @@ public class Cola {
 
     public synchronized Correo getCorreo() {
         Correo s = null;
-        while (cola.isEmpty()) {
+        while (cola.isEmpty() && contador < 30) {
             try {
                 wait();
             } catch (InterruptedException e) {

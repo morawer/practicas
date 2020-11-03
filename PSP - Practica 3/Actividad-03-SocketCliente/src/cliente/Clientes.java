@@ -10,92 +10,89 @@ import java.net.UnknownHostException;
 import java.util.Scanner;
 
 public class Clientes {
-	
-//IP y Puerto al que conectaremos.
-	
+
+	// IP y Puerto al que conectaremos.
+
 	public static final int PUERTO = 2017;
 	public static final String IP_SERVER = "localhost";
-	
+
 	public static void main(String[] args) {
-		
+
 		System.out.println("       BIENVENIDO A LA BLIBLIOTECA");
 		System.out.println("-------------------------------------------");
-		
-		
-		Socket clientes=null;
+
+		Socket clientes = null;
+
 		InputStreamReader entrada = null;
 		PrintStream salida = null;
-		
+
 		InetSocketAddress direccionServidor = new InetSocketAddress(IP_SERVER, PUERTO);
-		
+
 		Scanner sc = new Scanner(System.in);
-		
+
 		try {
-			
-			clientes =new Socket();
+
+			clientes = new Socket();
 			clientes.connect(direccionServidor);
-			System.out.println("Conexion establecida... a " + IP_SERVER + " por el puerto "+ PUERTO + "\n");
-			
-			entrada = new InputStreamReader(clientes.getInputStream());		//entrada de datos del servidor (from)
-			salida = new PrintStream(clientes.getOutputStream());			//salida de datos al servidor(to)
+			System.out.println("Conexion establecida... a " + IP_SERVER + " por el puerto " + PUERTO + "\n");
+
+			entrada = new InputStreamReader(clientes.getInputStream());
+			salida = new PrintStream(clientes.getOutputStream());
 			BufferedReader bf = new BufferedReader(entrada);
-			
-			
-			System.out.println("Por favor elija una opción \n" );			
+
+			System.out.println("Por favor elija una opciï¿½n \n");
 			System.out.println("1. Consultar libro por ISBN");
-			System.out.println("2. Consultar libro por título");
-			System.out.println("3. Salir de la aplicación");
-			
-			String num="";
-			
-			
-			while(!num.equals("3")) {
-				
-				while(!num.equalsIgnoreCase("fin")) {
-					
+			System.out.println("2. Consultar libro por tï¿½tulo");
+			System.out.println("3. Consultar libro por autor");
+			System.out.println("4. Salir de la aplicaciï¿½n");
+
+			String num = "";
+
+			while (!num.equals("4")) {
+
+				while (!num.equalsIgnoreCase("fin")) {
+
 					num = sc.next();
-					salida.println(num);								
+					salida.println(num);
 					String respuesta = bf.readLine();
 					System.out.println(respuesta);
-					
-					if(num.equalsIgnoreCase("volver")) {
-						
+
+					if (num.equalsIgnoreCase("volver")) {
+
+						System.out.println("Por favor elija una opciï¿½n \n");
 						System.out.println("1. Consultar libro por ISBN");
-						System.out.println("2. Consultar libro por título");
-						System.out.println("3. Salir de la aplicación");
+						System.out.println("2. Consultar libro por tï¿½tulo");
+						System.out.println("3. Consultar libro por autor");
+						System.out.println("4. Salir de la aplicaciï¿½n");
 					}
-					
+
 				}
-											
+
 			}
-						
-		}catch (UnknownHostException e) {
-			System.out.println("No se puede establecer comunicación con el servidor");
+
+		} catch (UnknownHostException e) {
+			System.out.println("No se puede establecer comunicaciï¿½n con el servidor");
 			System.out.println(e.getMessage());
 		} catch (IOException e) {
-			System.out.println("Error de E/S");
-			System.out.println(e.getMessage());
-		
-		}finally {
-			
+
+		} finally {
+
 			try {
-				if(salida != null && entrada != null){
-					
+				if (salida != null && entrada != null) {
+
 					salida.close();
 					entrada.close();
 					clientes.close();
-					
+
 				}
-				
-				
-				
+
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
-		
+
 		sc.close();
-		System.out.println("Se acabo la comunicación");
+		System.out.println("Se acabo la comunicaciï¿½n");
 
 	}
 }

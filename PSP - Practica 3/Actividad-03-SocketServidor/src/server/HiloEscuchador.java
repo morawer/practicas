@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.Socket;
+
 import java.util.ArrayList;
 
 public class HiloEscuchador implements Runnable {
@@ -25,11 +26,11 @@ public class HiloEscuchador implements Runnable {
 	public void run() {
 
 		ArrayList<Libros> listaLibros = new ArrayList<Libros>();
-		listaLibros.add(new Libros("1", "Sin ti nada", "Federico", (float) 10.50));
-		listaLibros.add(new Libros("2", "Sin ti todo", "Pepe", (float) 15.40));
-		listaLibros.add(new Libros("3", "Hola Don Pepito", "Pepe", "Jose", (float) 19.99));
-		listaLibros.add(new Libros("4", "La verdad", "Adolfo", (float) 20.50));
-		listaLibros.add(new Libros("5", "La mentira", "Julia", (float) 10.80));
+		listaLibros.add(new Libros("1", "Mentira", "Federico", (float) 10.50));
+		listaLibros.add(new Libros("2", "Verdad", "Pepe", (float) 15.40));
+		listaLibros.add(new Libros("3", "Amor", "Pepe", "Jose", (float) 19.99));
+		listaLibros.add(new Libros("4", "Odio", "Adolfo", (float) 20.50));
+		listaLibros.add(new Libros("5", "Confianza", "Julia", (float) 10.80));
 
 		System.out.println("Estableciendo comunicación con " + hilo.getName());
 		PrintStream salida = null;
@@ -43,50 +44,97 @@ public class HiloEscuchador implements Runnable {
 			entradaBuffer = new BufferedReader(entrada);
 
 			String opcion = "";
-			String ISBN = "";
+			String isbn = "";
 			String titulo = "";
+			String autor = "";
 
 			boolean continuar = true;
 
 			while (continuar) {
 				opcion = entradaBuffer.readLine();
-				if (opcion.trim().equalsIgnoreCase("3")) {
+				if (opcion.trim().equalsIgnoreCase("4")) {
 
 					salida.println("Hasta pronto, gracias por establecer conexión");
 					System.out.println(hilo.getName() + " ha cerrado la comunicación");
 					continuar = false;
 				} else if (opcion.trim().equalsIgnoreCase("1")) {
 
-					salida.println("Por favor selecciona un ISBN del 1 al 5(escriba 'volver' para ir al menu)");
+					salida.println("Por favor selecciona un ISBN del 1 al 5(escriba volver para ir al menu)");
 					System.out.println("El cliente quiere consultar libro por ISBN ");
 
 					do {
-						ISBN = entradaBuffer.readLine();
-						for (Libros libros : listaLibros) {
-							if (ISBN.equals(libros.getISBN())) {
-								salida.println(libros.toString());
-								break;						
-							} else {
-								salida.println("Libro con ISBN: " + ISBN + ". No encontrado.");
+						isbn = entradaBuffer.readLine();
+						boolean sinLibro = true;
+						for (Libros libro : listaLibros) {
+							if (libro.getISBN().equals(isbn)) {
+								salida.println(libro.toString());
+								sinLibro = false;
 							}
 						}
-					} while (!ISBN.equals("volver"));
+
+						if ((sinLibro) && (!isbn.equalsIgnoreCase("volver"))) {
+							salida.println("Libro no encontrado");
+						}
+
+					} while (!isbn.equalsIgnoreCase("volver"));
+
+					if (isbn.equals("volver")) {
+						salida.println();
+					}
 
 				} else if (opcion.trim().equalsIgnoreCase("2")) {
 
 					salida.println("Por favor escriba el nombre del titulo(escriba volver para ir al menu)");
+					System.out.println("El cliente quiere consultar libro por titulo");
+
+					do {
+
+						boolean sinTitulo = true;
+						titulo = entradaBuffer.readLine();
+						for (Libros libro : listaLibros) {
+							if (libro.getTitulo().trim().equalsIgnoreCase(titulo)) {
+								salida.println(libro.toString());
+								sinTitulo = false;
+							}
+						}
+						if ((sinTitulo) && (!titulo.equalsIgnoreCase("volver"))) {
+							salida.println("Libro no encontrado");
+						}
+
+					} while (!titulo.equals("volver"));
+
+					if (titulo.equals("volver")) {
+						salida.println();
+					}
+
+				}
+
+				else if (opcion.trim().equalsIgnoreCase("3")) {
+
+					salida.println("Por favor escriba el nombre del autor(escriba volver para ir al menu)");
 					System.out.println("El cliente quiere consultar libro por autor");
 
 					do {
-						titulo = entradaBuffer.readLine();
-						for (Libros libros : listaLibros) {
-							if (titulo.equalsIgnoreCase(libros.getTitulo())) {
-								salida.println(libros.toString());
-							} else {
-								salida.println("Libro con el título: " + titulo + ". No encontrado.");
+
+						boolean sinAutor = true;
+						autor = entradaBuffer.readLine();
+						for (Libros libro : listaLibros) {
+							if (libro.getAutor().trim().equalsIgnoreCase(autor)){
+								salida.println("LIBRO: " + libro.toString());
+								sinAutor = false;
 							}
+
 						}
-					} while (!titulo.equals("volver"));
+						if ((sinAutor) && (!autor.equalsIgnoreCase("volver"))) {
+							salida.println("Libro no encontrado");
+						}
+
+					} while (!autor.equals("volver"));
+
+					if (autor.equals("volver")) {
+						salida.println();
+					}
+
 				}
 			}
 		} catch (IOException e) {

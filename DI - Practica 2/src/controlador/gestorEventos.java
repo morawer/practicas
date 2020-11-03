@@ -7,10 +7,10 @@ import vista.ventanaMain;
 
 public class gestorEventos implements ActionListener {
 
-    private ventanaMain ventana;
+    private ventanaMain calculadora;
 
-    public gestorEventos(ventanaMain ventana) {
-        this.ventana = ventana;
+    public gestorEventos(ventanaMain calculadora) {
+        this.calculadora = calculadora;
     }
 
     @Override
@@ -19,83 +19,87 @@ public class gestorEventos implements ActionListener {
         float resul; // Variable que alberga el resultado.
         // Si se clica en el boton "Suma" hace la suma de los numeros escritos en las
         // dos cajas de texto.
-        if (e.getSource() == ventana.getSumarBoton()) {
+        if (e.getSource() == calculadora.getSumarBoton()) {
 
             try {
-                resul = Float.parseFloat(ventana.getNum1().getText()) + Float.parseFloat(ventana.getNum2().getText());
-                ventana.getResultado().setText(Float.toString(resul));
+                resul = Float.parseFloat(calculadora.getNum1().getText())
+                        + Float.parseFloat(calculadora.getNum2().getText());
+                calculadora.getResultado().setText(Float.toString(resul));
                 // Al terminar el calculo vacia las cojas de texto y hace focus en la primera
                 // caja.
-                ventana.getNum1().setText("");
-                ventana.getNum2().setText("");
-                ventana.getNum1().requestFocus();
+                calculadora.getNum1().setText("");
+                calculadora.getNum2().setText("");
+                calculadora.getNum1().requestFocus();
                 // Sino se meten numeros o se deja las cajas vacias se imprime el mensaje y se
                 // vacian las cajas y se hace focus en la primera caja.
             } catch (Exception e2) {
                 System.out.println("Debe introducir numeros.");
-                ventana.getNum1().setText("");
-                ventana.getNum2().setText("");
-                ventana.getNum1().requestFocus();
+                calculadora.getNum1().setText("");
+                calculadora.getNum2().setText("");
+                calculadora.getNum1().requestFocus();
             }
             // Si se clica en el boton "Resta" hace la resta de los numeros escritos en las
             // dos cajas de texto.
-        } else if (e.getSource() == ventana.getRestarBoton()) {
+        } else if (e.getSource() == calculadora.getRestarBoton()) {
 
             try {
-                resul = Float.parseFloat(ventana.getNum1().getText()) - Float.parseFloat(ventana.getNum2().getText());
-                ventana.getResultado().setText(Float.toString(resul));
+                resul = Float.parseFloat(calculadora.getNum1().getText())
+                        - Float.parseFloat(calculadora.getNum2().getText());
+                calculadora.getResultado().setText(Float.toString(resul));
                 // Al terminar el calculo vacia las cojas de texto y hace focus en la primera
                 // caja.
-                ventana.getNum1().setText("");
-                ventana.getNum2().setText("");
-                ventana.getNum1().requestFocus();
+                calculadora.getNum1().setText("");
+                calculadora.getNum2().setText("");
+                calculadora.getNum1().requestFocus();
                 // Sino se meten numeros o se deja las cajas vacias se imprime el mensaje y se
                 // vacian las cajas y se hace focus en la primera caja.
             } catch (Exception e2) {
                 System.out.println("Debe introducir numeros.");
-                ventana.getNum1().setText("");
-                ventana.getNum2().setText("");
-                ventana.getNum1().requestFocus();
+                calculadora.getNum1().setText("");
+                calculadora.getNum2().setText("");
+                calculadora.getNum1().requestFocus();
             }
             // Si se clica en el boton "Multiplicación" hace la multiplicación de los
             // numeros escritos en las dos cajas de texto.
-        } else if (e.getSource() == ventana.getMultiplicarBoton()) {
+        } else if (e.getSource() == calculadora.getMultiplicarBoton()) {
 
             try {
-                resul = Float.parseFloat(ventana.getNum1().getText()) * Float.parseFloat(ventana.getNum2().getText());
-                ventana.getResultado().setText(Float.toString(resul));
+                resul = Float.parseFloat(calculadora.getNum1().getText())
+                        * Float.parseFloat(calculadora.getNum2().getText());
+                calculadora.getResultado().setText(Float.toString(resul));
                 // Al terminar el calculo vacia las cojas de texto y hace focus en la primera
                 // caja.
-                ventana.getNum1().setText("");
-                ventana.getNum2().setText("");
-                ventana.getNum1().requestFocus();
+                calculadora.getNum1().setText("");
+                calculadora.getNum2().setText("");
+                calculadora.getNum1().requestFocus();
                 // Sino se meten numeros o se deja las cajas vacias se imprime el mensaje y se
                 // vacian las cajas y se hace focus en la primera caja.
             } catch (Exception e2) {
                 System.out.println("Debe introducir numeros.");
-                ventana.getNum1().setText("");
-                ventana.getNum2().setText("");
-                ventana.getNum1().requestFocus();
+                calculadora.getNum1().setText("");
+                calculadora.getNum2().setText("");
+                calculadora.getNum1().requestFocus();
             }
             // Si se clica en el boton "División" hace la división de los números escritos
             // en las dos cajas de texto.
-        } else if (e.getSource() == ventana.getDividirBoton()) {
+        } else if (e.getSource() == calculadora.getDividirBoton()) {
 
             try {
-                resul = Float.parseFloat(ventana.getNum1().getText()) / Float.parseFloat(ventana.getNum2().getText());
-                ventana.getResultado().setText(Float.toString(resul));
+                resul = Float.parseFloat(calculadora.getNum1().getText())
+                        / Float.parseFloat(calculadora.getNum2().getText());
+                calculadora.getResultado().setText(Float.toString(resul));
                 // Al terminar el calculo vacia las cojas de texto y hace focus en la primera
                 // caja.
-                ventana.getNum1().setText("");
-                ventana.getNum2().setText("");
-                ventana.getNum1().requestFocus();
+                calculadora.getNum1().setText("");
+                calculadora.getNum2().setText("");
+                calculadora.getNum1().requestFocus();
                 // Sino se meten numeros o se deja las cajas vacias se imprime el mensaje y se
                 // vacian las cajas y se hace focus en la primera caja.
             } catch (Exception e2) {
                 System.out.println("Debe introducir numeros.");
-                ventana.getNum1().setText("");
-                ventana.getNum2().setText("");
-                ventana.getNum1().requestFocus();
+                calculadora.getNum1().setText("");
+                calculadora.getNum2().setText("");
+                calculadora.getNum1().requestFocus();
             }
         }
     }

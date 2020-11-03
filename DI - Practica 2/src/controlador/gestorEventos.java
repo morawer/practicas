@@ -32,8 +32,7 @@ public class gestorEventos implements ActionListener {
                 calculadora.getNum1().requestFocus();
                 // Sino se meten numeros o se deja las cajas vacias se imprime el mensaje y se
                 // vacian las cajas y se hace focus en la primera caja.
-            } catch (Exception e2) {
-                System.out.println("Debe introducir numeros.");
+            } catch (Exception e1) {
                 calculadora.getNum1().setText("");
                 calculadora.getNum2().setText("");
                 calculadora.getNum1().requestFocus();
@@ -54,7 +53,6 @@ public class gestorEventos implements ActionListener {
                 // Sino se meten numeros o se deja las cajas vacias se imprime el mensaje y se
                 // vacian las cajas y se hace focus en la primera caja.
             } catch (Exception e2) {
-                System.out.println("Debe introducir numeros.");
                 calculadora.getNum1().setText("");
                 calculadora.getNum2().setText("");
                 calculadora.getNum1().requestFocus();
@@ -74,8 +72,7 @@ public class gestorEventos implements ActionListener {
                 calculadora.getNum1().requestFocus();
                 // Sino se meten numeros o se deja las cajas vacias se imprime el mensaje y se
                 // vacian las cajas y se hace focus en la primera caja.
-            } catch (Exception e2) {
-                System.out.println("Debe introducir numeros.");
+            } catch (Exception e3) {
                 calculadora.getNum1().setText("");
                 calculadora.getNum2().setText("");
                 calculadora.getNum1().requestFocus();
@@ -88,15 +85,14 @@ public class gestorEventos implements ActionListener {
                 resul = Float.parseFloat(calculadora.getNum1().getText())
                         / Float.parseFloat(calculadora.getNum2().getText());
                 calculadora.getResultado().setText(Float.toString(resul));
-                // Al terminar el calculo vacia las cojas de texto y hace focus en la primera
+                // Al terminar el calculo vacia las cajas de texto y hace focus en la primera
                 // caja.
                 calculadora.getNum1().setText("");
                 calculadora.getNum2().setText("");
                 calculadora.getNum1().requestFocus();
                 // Sino se meten numeros o se deja las cajas vacias se imprime el mensaje y se
                 // vacian las cajas y se hace focus en la primera caja.
-            } catch (Exception e2) {
-                System.out.println("Debe introducir numeros.");
+            } catch (Exception e4) {
                 calculadora.getNum1().setText("");
                 calculadora.getNum2().setText("");
                 calculadora.getNum1().requestFocus();

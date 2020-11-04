@@ -9,6 +9,8 @@ public class GenerarCorreo {
 		return correo;
 	}
 
+	// Se genera el destinatario de manera aleatoria de una lista ya creada e
+	// introducida anteriormente en un ArrayList.
 	public String generarDestinatario() {
 		List<String> listaDestinatario = new ArrayList<String>();
 		listaDestinatario.add("pikachu@gmail.com");
@@ -27,6 +29,8 @@ public class GenerarCorreo {
 		return listaDestinatario.get(numero);
 	}
 
+	// Se genera el remitente de manera aleatoria de una lista ya creada e
+	// introducida anteriormente en un ArrayList.
 	public String generarRemitente() {
 		List<String> listaRemitente = new ArrayList<String>();
 		listaRemitente.add("papuchi@hotmail.com");
@@ -46,7 +50,8 @@ public class GenerarCorreo {
 	}
 
 	public String generarAsunto() {
-
+		// Se genera el asunto de manera aleatoria de una lista ya creada e introducida
+		// anteriormente en un ArrayList.
 		List<String> listaAsunto = new ArrayList<String>();
 		listaAsunto.add("asdwqesdads");
 		listaAsunto.add("safdsgffdgd");
@@ -65,7 +70,8 @@ public class GenerarCorreo {
 	}
 
 	public String generarCuerpo() {
-
+		// Se genera el cuerpo del correo de manera aleatoria de una lista ya creada e
+		// introducida anteriormente en un ArrayList.
 		List<String> listaAsunto = new ArrayList<String>();
 		listaAsunto.add("Morbi venenatis");
 		listaAsunto.add("Vivamus lectus");

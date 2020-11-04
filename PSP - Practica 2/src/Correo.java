@@ -1,5 +1,6 @@
 public class Correo {
 
+    // Atributos del correo.
     public static int numId = 1;
     private int id;
     private String destinatario;
@@ -7,6 +8,7 @@ public class Correo {
     private String asunto;
     private String cuerpo;
 
+    // Getters y setters.
     public int getId() {
         return id;
     }
@@ -45,12 +47,14 @@ public class Correo {
 
     @Override
     public String toString() {
-        return "Correo [id=" + id + ", asunto=" + asunto + ", cuerpo=" + cuerpo + 
-        ", destinatario=" + destinatario +  ", remitente=" + remitente + "]";
+        return "Correo [id=" + id + ", asunto=" + asunto + ", cuerpo=" + cuerpo + ", destinatario=" + destinatario
+                + ", remitente=" + remitente + "]";
     }
 
+    // Constructor del correo. El Id no entra como argiumento del contructor. Se
+    // sumara uno mas cada vez que se cree uno.
     public Correo(String destinatario, String remitente, String asunto, String cuerpo) {
-        id = Correo.numId++; 
+        id = Correo.numId++;
         this.destinatario = destinatario;
         this.remitente = remitente;
         this.asunto = asunto;

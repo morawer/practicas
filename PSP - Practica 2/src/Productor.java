@@ -7,7 +7,7 @@ public class Productor extends Thread {
 		this.nombre = nombre;
 		this.cola = cola;
 	}
-	
+	//For para que cada productor cree 10 correos cada uno.
 	public void run(){
 		GenerarCorreo gc = new GenerarCorreo();
 		for (int i = 1; i <= 10; i++) {
@@ -15,7 +15,7 @@ public class Productor extends Thread {
 			System.out.println(nombre + " produce: " + correo.getId());
 			cola.addCorreo(correo);
 		}
-		System.out.println(Thread.currentThread() + " ha terminado."); 
+		System.out.println("+++El productor " + Thread.currentThread() + " ha terminado.+++"); 
 	}
     
 }

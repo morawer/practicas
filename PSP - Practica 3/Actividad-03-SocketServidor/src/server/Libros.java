@@ -2,75 +2,76 @@ package server;
 
 public class Libros {
 
-	private String ISBN;
+	private String isbn;
 	private String titulo;
 	private String autor;
-	private String autor1;
-	private float precio;
-
-	public Libros(String iSBN, String titulo, String autor, String autor1, float precio) {
-		ISBN = iSBN;
+	private String autor2;
+	private String precio;
+	
+	
+	public Libros(String isbn, String titulo, String autor, String precio) {
+		super();
+		this.isbn = isbn;
+		this.titulo = titulo;
+		this.autor = autor;		
+		this.precio = precio;
+		
+		
+	}
+	public Libros(String isbn, String titulo, String autor, String autor2, String precio) {
+		super();
+		this.isbn = isbn;
 		this.titulo = titulo;
 		this.autor = autor;
-		this.autor1 = autor1;
+		this.autor2 = autor2;
 		this.precio = precio;
+		
+		
 	}
-
-	public Libros(String iSBN, String titulo, String autor, float precio) {
-		ISBN = iSBN;
-		this.titulo = titulo;
-		this.autor = autor;
-		this.precio = precio;
+	public String getIsbn() {
+		return isbn;
 	}
-
-	public String getISBN() {
-		return ISBN;
+	public void setIsbn(String isbn) {
+		this.isbn = isbn;
 	}
-
-	public void setISBN(String iSBN) {
-		ISBN = iSBN;
-	}
-
 	public String getTitulo() {
 		return titulo;
 	}
-
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
-
 	public String getAutor() {
 		return autor;
 	}
-
 	public void setAutor(String autor) {
 		this.autor = autor;
 	}
-
-	public String getAutor1() {
-		return autor1;
+	public String getAutor2() {
+		return autor2;
 	}
-
-	public void setAutor1(String autor1) {
-		this.autor1 = autor1;
+	public void setAutor2(String autor2) {
+		this.autor2 = autor2;
 	}
-
-	public float getPrecio() {
+	public String getPrecio() {
 		return precio;
 	}
-
-	public void setPrecio(float precio) {
+	public void setPrecio(String precio) {
 		this.precio = precio;
 	}
-
 	@Override
 	public String toString() {
-		return "Libros [ISBN=" + ISBN + ", autor=" + autor + ", autor1=" + autor1 + ", precio=" + precio + ", titulo="
-				+ titulo + "]";
+		return "Libros [isbn=" + isbn + ", titulo=" + titulo + ", autor=" + autor + ", autor2=" + autor2 + ", precio="
+				+ precio + "]";
 	}
+
+	
+
+	
+
 	
 	
 
+	
 	
 	
 	

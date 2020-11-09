@@ -46,12 +46,12 @@ public class Clientes {
 
 			String num = "";
 			while (!num.equals("5")) {
-				while (!num.equals("fin")){
-				num = sc.nextLine();
-				salida.writeUTF(num);
+				while (!num.equals("fin")) {
+					num = sc.nextLine();
+					salida.writeUTF(num);
 
-				String respuesta = entrada.readUTF();
-				System.out.println(respuesta);
+					String respuesta = entrada.readUTF();
+					System.out.println(respuesta);
 				}
 			}
 

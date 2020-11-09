@@ -73,8 +73,7 @@ public class HiloEscuchador implements Runnable {
 						continuar = false;
 
 					} else if (opcion.equalsIgnoreCase("1")) {
-						salida.writeUTF(
-								"Por favor selecciona un ISBN: (Escriba 'Volver' para ir al menu) \n");
+						salida.writeUTF("Por favor selecciona un ISBN: (Escriba 'Volver' para ir al menu) \n");
 						System.out.println("El cliente quiere consultar libro por ISBN ");
 						do {
 							isbn = entrada.readUTF();
@@ -193,7 +192,6 @@ public class HiloEscuchador implements Runnable {
 
 							salida.writeUTF("\n Libro añadido correctamente. \n" + menu());
 							System.out.println("El cliente ha añadido un nuevo libro.");
-
 						}
 					}
 				} else {

@@ -69,4 +69,5 @@ public class Libros {
 	public String toString() {
 		return "Libros [isbn=" + isbn + ", titulo=" + titulo + ", autor=" + autor + ", autor2=" + autor2 + ", precio="
 				+ precio + "]";
+	}
 }

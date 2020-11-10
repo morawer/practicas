@@ -7,16 +7,19 @@ import java.net.Socket;
 
 public class ServidorHilo {
 
+	// PUERTO e IP_SERVER son contantes, las cuales marcan la IP y el puerto del
+	// servidor.
 	public static final int PUERTO = 2017;
 	public static final String IP_SERVER = "localhost";
 
 	public static void main(String[] args) {
 
-		System.out.println("      APLICACI�N DE SERVIDOR      ");
+		System.out.println("      APLICACIÓN DE SERVIDOR      ");
 		System.out.println("----------------------------------");
 
 		ServerSocket servidor = null;
 
+		// Creamos el Servidor.
 		try {
 
 			servidor = new ServerSocket();
@@ -28,7 +31,7 @@ public class ServidorHilo {
 
 			while (true) {
 				Socket enchufeAlCliente = servidor.accept();
-				System.out.println("Comunicaci�n entrante");
+				System.out.println("Comunicación entrante");
 				new HiloEscuchador(enchufeAlCliente);
 			}
 

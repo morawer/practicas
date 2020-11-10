@@ -1,13 +1,14 @@
 package server;
 
 public class Libros {
-
+	// Atributos de Libro.
 	private String isbn;
 	private String titulo;
 	private String autor;
 	private String autor2;
 	private String precio;
 
+	// Constructor de libro de un solo autor.
 	public Libros(String isbn, String titulo, String autor, String precio) {
 		super();
 		this.isbn = isbn;
@@ -16,6 +17,7 @@ public class Libros {
 		this.precio = precio;
 	}
 
+	// Constructor de libro de dos autores.
 	public Libros(String isbn, String titulo, String autor, String autor2, String precio) {
 		super();
 		this.isbn = isbn;
@@ -25,6 +27,7 @@ public class Libros {
 		this.precio = precio;
 	}
 
+	// Getters y Setters de Libro.
 	public String getIsbn() {
 		return isbn;
 	}

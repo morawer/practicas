@@ -7,11 +7,13 @@ import java.net.Socket;
 import java.util.ArrayList;
 
 public class HiloEscuchador implements Runnable {
-
+	// Clase Hilo la cual, albergara en nombre y numero de hilo.
+	// Atributos de la clase.
 	private Thread hilo;
 	private static int numCliente = 0;
 	private Socket enchufeCliente;
 
+	// constructor de la clase HiloEscuchador.
 	public HiloEscuchador(Socket cliente) {
 
 		numCliente++;
@@ -20,6 +22,7 @@ public class HiloEscuchador implements Runnable {
 		hilo.start();
 	}
 
+	// Metodo del menu().
 	private String menu() {
 
 		return "Por favor elija una opcion \n \n" + "1. Consultar libro por ISBN \n"
@@ -29,7 +32,7 @@ public class HiloEscuchador implements Runnable {
 
 	@Override
 	public void run() {
-
+		// Creamos un ArrayList para albergar los libros creados.
 		ArrayList<Libros> listaLibros = new ArrayList<Libros>();
 		listaLibros.add(new Libros("1", "La mentira", "Fede", "10.50"));
 		listaLibros.add(new Libros("2", "La Verdad", "Juan", "15.40"));
@@ -42,14 +45,14 @@ public class HiloEscuchador implements Runnable {
 		DataInputStream entrada = null;
 
 		try {
-
+			// Creamos el tipo de conexcion con cliente.
 			salida = new DataOutputStream(enchufeCliente.getOutputStream());
 			entrada = new DataInputStream(enchufeCliente.getInputStream());
 
 			boolean continuar = true;
 
 			while (continuar) {
-
+				// Variables.
 				String opcion = "";
 				String isbn = "";
 				String titulo = "";
@@ -61,6 +64,7 @@ public class HiloEscuchador implements Runnable {
 				String nuevoAutor2 = "";
 				String nuevoPrecio = "";
 
+				// Se crea el funcionamiento para moverte por el menu pulsando numeros.
 				opcion = entrada.readUTF();
 				if (opcion.equalsIgnoreCase("1") || opcion.equalsIgnoreCase("2") || opcion.equalsIgnoreCase("3")
 						|| opcion.equalsIgnoreCase("4") || opcion.equalsIgnoreCase("5")) {
@@ -71,7 +75,8 @@ public class HiloEscuchador implements Runnable {
 						System.out.println(hilo.getName() + " ha cerrado la comunicación");
 
 						continuar = false;
-
+						// Para buscar un libro por ISBN recorremos un "for" haciendo un "equals" del
+						// número e imprimiendo el libro por consola.
 					} else if (opcion.equalsIgnoreCase("1")) {
 						salida.writeUTF("Por favor selecciona un ISBN: (Escriba 'Volver' para ir al menu) \n");
 						System.out.println("El cliente quiere consultar libro por ISBN ");
@@ -92,6 +97,8 @@ public class HiloEscuchador implements Runnable {
 
 						salida.writeUTF(menu());
 
+						// Para buscar un libro por titulo recorremos un "for" haciendo un "equals" del
+						// titulo e imprimiendo el libro por consola.
 					} else if (opcion.trim().equalsIgnoreCase("2")) {
 						salida.writeUTF(
 								"Por favor escriba el nombre del titulo: (Escriba 'Volver' para ir al menu) \n");
@@ -117,6 +124,8 @@ public class HiloEscuchador implements Runnable {
 
 						salida.writeUTF(menu());
 
+						// Para buscar un libro por autor recorremos un "for" haciendo un "equals" del
+						// autor e imprimiendo el libro por consola.
 					} else if (opcion.equalsIgnoreCase("3")) {
 						salida.writeUTF("Por favor escriba el nombre del autor: (Escriba 'Volver' para ir al menu) \n");
 						System.out.println("El cliente quiere consultar libro por autor ");
@@ -140,7 +149,10 @@ public class HiloEscuchador implements Runnable {
 						} while (!autor.equalsIgnoreCase("volver"));
 
 						salida.writeUTF(menu());
-
+						
+						// Para añadir un libro primero damos a elegir al cliente si quiere añadir un
+						// libro con dos o un autor haciendo un "if". despues se recojen los datos y se
+						// introducen al arrayList por medio de un constructor Libro.
 					} else if (opcion.equalsIgnoreCase("4")) {
 						do {
 							salida.writeUTF(

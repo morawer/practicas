@@ -44,6 +44,8 @@ public class Clientes {
 			System.out.println("4. Añadir libro.");
 			System.out.println("5. Salir de la aplicación");
 
+			// Creamos un bucle en el cual damos salida y entrada a la respuesta con el
+			// servidor.
 			String num = "";
 			while (!num.equals("5")) {
 				while (!num.equals("fin")) {

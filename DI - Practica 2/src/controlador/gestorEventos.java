@@ -2,6 +2,12 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 import vista.ventanaMain;
 
@@ -19,9 +25,19 @@ public class gestorEventos implements ActionListener {
         float resul; // Variable que alberga el resultado.
         // Si se clica en el boton "Suma" hace la suma de los numeros escritos en las
         // dos cajas de texto.
+
         if (e.getSource() == calculadora.getSumarBoton()) {
 
             try {
+                Clip clip = AudioSystem.getClip();
+                clip.open(AudioSystem.getAudioInputStream(new File("src/vista/sounds/sound.wav")));
+                clip.start();
+            } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
+                System.out.println("Error al reproducir el sonido.");
+            }
+
+            try {
+
                 resul = Float.parseFloat(calculadora.getNum1().getText())
                         + Float.parseFloat(calculadora.getNum2().getText());
                 calculadora.getResultado().setText(Float.toString(resul));
@@ -40,6 +56,14 @@ public class gestorEventos implements ActionListener {
             // Si se clica en el boton "Resta" hace la resta de los numeros escritos en las
             // dos cajas de texto.
         } else if (e.getSource() == calculadora.getRestarBoton()) {
+
+            try {
+                Clip clip = AudioSystem.getClip();
+                clip.open(AudioSystem.getAudioInputStream(new File("src/vista/sounds/sound.wav")));
+                clip.start();
+            } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
+                System.out.println("Error al reproducir el sonido.");
+            }
 
             try {
                 resul = Float.parseFloat(calculadora.getNum1().getText())
@@ -62,6 +86,14 @@ public class gestorEventos implements ActionListener {
         } else if (e.getSource() == calculadora.getMultiplicarBoton()) {
 
             try {
+                Clip clip = AudioSystem.getClip();
+                clip.open(AudioSystem.getAudioInputStream(new File("src/vista/sounds/sound.wav")));
+                clip.start();
+            } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
+                System.out.println("Error al reproducir el sonido.");
+            }
+
+            try {
                 resul = Float.parseFloat(calculadora.getNum1().getText())
                         * Float.parseFloat(calculadora.getNum2().getText());
                 calculadora.getResultado().setText(Float.toString(resul));
@@ -80,6 +112,14 @@ public class gestorEventos implements ActionListener {
             // Si se clica en el boton "División" hace la división de los números escritos
             // en las dos cajas de texto.
         } else if (e.getSource() == calculadora.getDividirBoton()) {
+
+            try {
+                Clip clip = AudioSystem.getClip();
+                clip.open(AudioSystem.getAudioInputStream(new File("src/vista/sounds/sound.wav")));
+                clip.start();
+            } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
+                System.out.println("Error al reproducir el sonido.");
+            }
 
             try {
                 resul = Float.parseFloat(calculadora.getNum1().getText())

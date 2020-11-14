@@ -6,7 +6,6 @@ import java.awt.FontFormatException;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.io.IOException;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -43,23 +42,24 @@ public class ventanaMain extends JFrame {
             Font font = Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream("fonts/Calculator.ttf"));
             // Creamos una caja de texto donde introducir los numeros.
             num1 = new JTextField();
-            num1.setBounds(200, 245, 120, 60); // Posicionamos en la calculadora.
+            num1.setBounds(180, 245, 120, 60); // Posicionamos en la calculadora.
             num1.setFont(font.deriveFont(Font.PLAIN, 28f));
+            num1.requestFocus();
             add(num1);
             num1.setBorder(null);
 
             // Creamos una caja de texto donde introducir los numeros.
             num2 = new JTextField();
-            num2.setBounds(200, 325, 120, 60); // Posicionamos en la calculadora.
+            num2.setBounds(180, 325, 120, 60); // Posicionamos en la calculadora.
             num2.setFont(font.deriveFont(Font.PLAIN, 28f));
             add(num2);
             num2.setBorder(null);
 
             // Creamos el cajon de texto que mostrará el resultado.
             resultado = new JTextField();
-            resultado.setBounds(160, 420, 160, 30); // Posicionamos en la calculadora.
+            resultado.setBounds(180, 420, 160, 30); // Posicionamos en la calculadora.
             resultado.setBackground(null); // Desactivamos el fondo del cajón.
-            resultado.setFont(font.deriveFont(Font.PLAIN, 28f));
+            resultado.setFont(font.deriveFont(Font.PLAIN, 36f));
             resultado.setBorder(null); // Desactivamos los bordes del cajón.
             add(resultado);
 
@@ -78,19 +78,19 @@ public class ventanaMain extends JFrame {
             Font font2 = Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream("fonts/LEDCalculator.ttf"));
             // Creamos una etiqueta y la posicionamos.
             etiquetaNum1 = new JLabel("Número 1: ");
-            etiquetaNum1.setBounds(100, 260, 105, 30); // Posicionamos en la calculadora.
+            etiquetaNum1.setBounds(80, 260, 105, 30); // Posicionamos en la calculadora.
             etiquetaNum1.setFont(font2.deriveFont(Font.PLAIN, 16f));
             add(etiquetaNum1);
 
             // Creamos una etiqueta y la posicionamos.
             etiquetaNum2 = new JLabel("Número 2: ");
-            etiquetaNum2.setBounds(100, 340, 105, 30); // Posicionamos en la calculadora.
+            etiquetaNum2.setBounds(80, 340, 105, 30); // Posicionamos en la calculadora.
             etiquetaNum2.setFont(font2.deriveFont(Font.PLAIN, 16f));
             add(etiquetaNum2);
 
             // Creamos el boton "Suma". Este boton se mantiene a la espera de ser clicado.
             sumarBoton = new JButton("+");
-            sumarBoton.setBackground(new Color (255,255,255));
+            sumarBoton.setBackground(new Color(255, 255, 255));
             sumarBoton.setBounds(350, 200, 50, 50); // Posicionamos en la calculadora.
             sumarBoton.setFont(font2.deriveFont(Font.PLAIN, 30f));
             sumarBoton.setBorder(null);
@@ -98,7 +98,7 @@ public class ventanaMain extends JFrame {
             sumarBoton.addActionListener(new gestorEventos(this));
             // Creamos el boton "Resta". Este boton se mantiene a la espera de ser clicado.
             restarBoton = new JButton("-");
-            restarBoton.setBackground(new Color (255,255,255));
+            restarBoton.setBackground(new Color(255, 255, 255));
             restarBoton.setBounds(350, 280, 50, 50); // Posicionamos en la calculadora.
             restarBoton.setFont(font2.deriveFont(Font.PLAIN, 30f));
             restarBoton.setBorder(null);
@@ -107,7 +107,7 @@ public class ventanaMain extends JFrame {
             // Creamos el boton "Multiplicar". Este boton se mantiene a la espera de ser
             // clicado.
             multiplicarBoton = new JButton("X");
-            multiplicarBoton.setBackground(new Color (255,255,255));
+            multiplicarBoton.setBackground(new Color(255, 255, 255));
             multiplicarBoton.setBounds(350, 360, 50, 50); // Posicionamos en la calculadora.
             multiplicarBoton.setFont(font2.deriveFont(Font.PLAIN, 30f));
             multiplicarBoton.setBorder(null);
@@ -116,7 +116,7 @@ public class ventanaMain extends JFrame {
             // Creamos el boton "Dividir". Este boton se mantiene a la espera de ser
             // clicado.
             dividirBoton = new JButton("/");
-            dividirBoton.setBackground(new Color (255,255,255));
+            dividirBoton.setBackground(new Color(255, 255, 255));
             dividirBoton.setBounds(350, 440, 50, 50); // Posicionamos en la calculadora.
             dividirBoton.setFont(font2.deriveFont(Font.PLAIN, 30f));
             dividirBoton.setBorder(null);
@@ -124,7 +124,7 @@ public class ventanaMain extends JFrame {
             dividirBoton.addActionListener(new gestorEventos(this));
             // Creamos la etiqueta de resultado
             etiquetaResultado = new JLabel("=");
-            etiquetaResultado.setBounds(100, 420, 50, 50); // Posicionamos en la calculadora.
+            etiquetaResultado.setBounds(110, 420, 50, 30); // Posicionamos en la calculadora.
             etiquetaResultado.setFont(font2.deriveFont(Font.PLAIN, 30f));
             add(etiquetaResultado);
         } catch (FontFormatException e) {

@@ -8,7 +8,9 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.swing.JOptionPane;
 
+import vista.ventanaCubica;
 import vista.ventanaMain;
 
 public class gestorEventos implements ActionListener {
@@ -137,6 +139,21 @@ public class gestorEventos implements ActionListener {
                 calculadora.getNum2().setText("");
                 calculadora.getNum1().requestFocus();
             }
+        } else if (e.getSource() == calculadora.getRaizCuadrada()) {
+
+            try {
+                Clip clip = AudioSystem.getClip();
+                clip.open(AudioSystem.getAudioInputStream(new File("src/vista/sounds/sound.wav")));
+                clip.start();
+            } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
+                System.out.println("Error al reproducir el sonido.");
+            }
+            JOptionPane.showMessageDialog(null, "Funcionalidad no disponible.");
+
+        } else if (e.getSource() == calculadora.getRaizCubica()) {
+            ventanaCubica ventana1 = new ventanaCubica();
+            ventana1.setVisible(true);
+            
         }
     }
 }

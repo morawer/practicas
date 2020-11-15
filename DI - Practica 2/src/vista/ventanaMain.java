@@ -18,7 +18,7 @@ public class ventanaMain extends JFrame {
     private static final long serialVersionUID = 1L;
     private JLabel etiquetaNum1, etiquetaNum2, etiquetaResultado, logo;
     private JTextField num1, num2, resultado;
-    private JButton restarBoton, sumarBoton, multiplicarBoton, dividirBoton;
+    private JButton restarBoton, sumarBoton, multiplicarBoton, dividirBoton, raizCuadrada, raizCubica;
 
     public ventanaMain() {
 
@@ -99,16 +99,16 @@ public class ventanaMain extends JFrame {
             // Creamos el boton "Resta". Este boton se mantiene a la espera de ser clicado.
             restarBoton = new JButton("-");
             restarBoton.setBackground(new Color(255, 255, 255));
-            restarBoton.setBounds(350, 280, 50, 50); // Posicionamos en la calculadora.
+            restarBoton.setBounds(350, 260, 50, 50); // Posicionamos en la calculadora.
             restarBoton.setFont(font2.deriveFont(Font.PLAIN, 30f));
             restarBoton.setBorder(null);
             add(restarBoton);
             restarBoton.addActionListener(new gestorEventos(this));
             // Creamos el boton "Multiplicar". Este boton se mantiene a la espera de ser
             // clicado.
-            multiplicarBoton = new JButton("X");
+            multiplicarBoton = new JButton("x");
             multiplicarBoton.setBackground(new Color(255, 255, 255));
-            multiplicarBoton.setBounds(350, 360, 50, 50); // Posicionamos en la calculadora.
+            multiplicarBoton.setBounds(350, 320, 50, 50); // Posicionamos en la calculadora.
             multiplicarBoton.setFont(font2.deriveFont(Font.PLAIN, 30f));
             multiplicarBoton.setBorder(null);
             add(multiplicarBoton);
@@ -117,22 +117,38 @@ public class ventanaMain extends JFrame {
             // clicado.
             dividirBoton = new JButton("/");
             dividirBoton.setBackground(new Color(255, 255, 255));
-            dividirBoton.setBounds(350, 440, 50, 50); // Posicionamos en la calculadora.
+            dividirBoton.setBounds(350, 380, 50, 50); // Posicionamos en la calculadora.
             dividirBoton.setFont(font2.deriveFont(Font.PLAIN, 30f));
             dividirBoton.setBorder(null);
             add(dividirBoton);
             dividirBoton.addActionListener(new gestorEventos(this));
+
+            raizCuadrada = new JButton ("√");
+            raizCuadrada.setBackground(new Color(255, 255, 255));
+            raizCuadrada.setBounds(350, 440, 50, 50);
+            raizCuadrada.setFont(font2.deriveFont(Font.PLAIN, 30f));
+            raizCuadrada.setBorder(null);
+            add(raizCuadrada);
+            raizCuadrada.addActionListener(new gestorEventos(this));
+
+            raizCubica = new JButton ("3√");
+            raizCubica.setBackground(new Color(255, 255, 255));
+            raizCubica.setBounds(350, 500, 50, 50);
+            raizCubica.setFont(font2.deriveFont(Font.PLAIN, 30f));
+            raizCubica.setBorder(null);
+            add(raizCubica);
+
             // Creamos la etiqueta de resultado
             etiquetaResultado = new JLabel("=");
             etiquetaResultado.setBounds(110, 420, 50, 30); // Posicionamos en la calculadora.
             etiquetaResultado.setFont(font2.deriveFont(Font.PLAIN, 30f));
             add(etiquetaResultado);
+
         } catch (FontFormatException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     // Metodo que aglutina los eventos.
@@ -141,6 +157,7 @@ public class ventanaMain extends JFrame {
         restarBoton.addActionListener(eventos);
         multiplicarBoton.addActionListener(eventos);
         dividirBoton.addActionListener(eventos);
+        raizCuadrada.addActionListener(eventos);
     }
 
     // Getters y Setters de las etiquetas y cajas de texto.
@@ -226,5 +243,21 @@ public class ventanaMain extends JFrame {
 
     public void setDividirBoton(JButton dividirBoton) {
         this.dividirBoton = dividirBoton;
+    }
+
+    public JButton getRaizCuadrada() {
+        return raizCuadrada;
+    }
+
+    public void setRaizCuadrada(JButton raizCuadrada) {
+        this.raizCuadrada = raizCuadrada;
+    }
+
+    public JButton getRaizCubica() {
+        return raizCubica;
+    }
+
+    public void setRaizCubica(JButton raizCubica) {
+        this.raizCubica = raizCubica;
     }
 }

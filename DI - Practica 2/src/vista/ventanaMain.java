@@ -95,7 +95,7 @@ public class ventanaMain extends JFrame {
             sumarBoton.setFont(font2.deriveFont(Font.PLAIN, 30f));
             sumarBoton.setBorder(null);
             add(sumarBoton);
-            sumarBoton.addActionListener(new gestorEventos(this));
+            
             // Creamos el boton "Resta". Este boton se mantiene a la espera de ser clicado.
             restarBoton = new JButton("-");
             restarBoton.setBackground(new Color(255, 255, 255));
@@ -103,7 +103,6 @@ public class ventanaMain extends JFrame {
             restarBoton.setFont(font2.deriveFont(Font.PLAIN, 30f));
             restarBoton.setBorder(null);
             add(restarBoton);
-            restarBoton.addActionListener(new gestorEventos(this));
             // Creamos el boton "Multiplicar". Este boton se mantiene a la espera de ser
             // clicado.
             multiplicarBoton = new JButton("x");
@@ -112,7 +111,6 @@ public class ventanaMain extends JFrame {
             multiplicarBoton.setFont(font2.deriveFont(Font.PLAIN, 30f));
             multiplicarBoton.setBorder(null);
             add(multiplicarBoton);
-            multiplicarBoton.addActionListener(new gestorEventos(this));
             // Creamos el boton "Dividir". Este boton se mantiene a la espera de ser
             // clicado.
             dividirBoton = new JButton("/");
@@ -121,7 +119,6 @@ public class ventanaMain extends JFrame {
             dividirBoton.setFont(font2.deriveFont(Font.PLAIN, 30f));
             dividirBoton.setBorder(null);
             add(dividirBoton);
-            dividirBoton.addActionListener(new gestorEventos(this));
 
             raizCuadrada = new JButton ("√");
             raizCuadrada.setBackground(new Color(255, 255, 255));
@@ -129,7 +126,6 @@ public class ventanaMain extends JFrame {
             raizCuadrada.setFont(font2.deriveFont(Font.PLAIN, 30f));
             raizCuadrada.setBorder(null);
             add(raizCuadrada);
-            raizCuadrada.addActionListener(new gestorEventos(this));
 
             raizCubica = new JButton ("3√");
             raizCubica.setBackground(new Color(255, 255, 255));
@@ -158,6 +154,7 @@ public class ventanaMain extends JFrame {
         multiplicarBoton.addActionListener(eventos);
         dividirBoton.addActionListener(eventos);
         raizCuadrada.addActionListener(eventos);
+        raizCubica.addActionListener(eventos);
     }
 
     // Getters y Setters de las etiquetas y cajas de texto.

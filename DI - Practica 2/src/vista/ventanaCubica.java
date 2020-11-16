@@ -1,6 +1,8 @@
 package vista;
 
+//import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JTextField;
 import java.awt.Font;
 import java.awt.FontFormatException;
@@ -12,10 +14,12 @@ public class ventanaCubica extends JFrame {
 
     private static final long serialVersionUID = 1L;
     private JTextField password;
+    private JLabel labelPassword;
+   // private JButton buttonPassword;
 
     public ventanaCubica() {
 
-        setSize(470, 470);
+        setSize(400,300);
         setLocationRelativeTo(null); // Con "null" hacemos que la calculadora aparezca en el centro de la pantalla
         setDefaultCloseOperation(EXIT_ON_CLOSE); // Si clicamos en la "x" la calculadora se cierra.
         setResizable(false); // Impedimos poder redimensionar la calculadora.
@@ -33,11 +37,11 @@ public class ventanaCubica extends JFrame {
 
        
         try {
-            Font font = Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream("fonts/Calculator.ttf"));
+            Font font = Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream("fonts/LEDCalculator.ttf"));
 
             password = new JTextField();
-            password.setBounds(180, 245, 120, 60); // Posicionamos en la calculadora.
-            password.setFont(font.deriveFont(Font.PLAIN, 28f));
+            password.setBounds(140, 110, 120, 30); // Posicionamos en la calculadora.
+            password.setFont(font.deriveFont(Font.PLAIN, 14f));
             password.requestFocus();
             add(password);
 
@@ -47,7 +51,33 @@ public class ventanaCubica extends JFrame {
             e.printStackTrace();
         }
            
+        
+        try {
+            Font font = Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream("fonts/LEDCalculator.ttf"));
+            
+            labelPassword = new JLabel("Escriba la contraseña: ");
+            labelPassword.setBounds(85, 50, 240, 60); // Posicionamos en la calculadora.
+            labelPassword.setFont(font.deriveFont(Font.PLAIN, 16f));
+            add(labelPassword);
 
+        } catch (FontFormatException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // try {
+        //    Font font = Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream("fonts/LEDCalculator.ttf"));
+        // } catch (FontFormatException e) {
+        //     e.printStackTrace();
+        // } catch (IOException e) {
+        //     e.printStackTrace();
+        // }
+
+        //     buttonPassword = new JButton("Aceptar");
+        //     buttonPassword.setBounds(140, 150, 100, 30); // Posicionamos en la calculadora.
+        //     buttonPassword.setFont(font.deriveFont(Font.PLAIN, 14f));
+        //     add(buttonPassword);
 
         
     }

@@ -148,7 +148,8 @@ public class gestorEventos implements ActionListener {
             } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
                 System.out.println("Error al reproducir el sonido.");
             }
-            JOptionPane.showMessageDialog(null, "Funcionalidad no disponible.");
+            JOptionPane.showMessageDialog(null, "Funcionalidad no disponible",
+                     null, JOptionPane.ERROR_MESSAGE, null);
 
         } else if (e.getSource() == calculadora.getRaizCubica()) {
             ventanaCubica ventana1 = new ventanaCubica();

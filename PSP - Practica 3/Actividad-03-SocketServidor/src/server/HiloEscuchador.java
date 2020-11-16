@@ -79,7 +79,7 @@ public class HiloEscuchador implements Runnable {
 						// número e imprimiendo el libro por consola.
 					} else if (opcion.equalsIgnoreCase("1")) {
 						salida.writeUTF("Por favor selecciona un ISBN: (Escriba 'Volver' para ir al menu) \n");
-						System.out.println("El cliente quiere consultar libro por ISBN ");
+						System.out.println("El " + hilo.getName() + " quiere consultar libro por ISBN ");
 						do {
 							isbn = entrada.readUTF();
 							boolean sinLibro = true;
@@ -102,7 +102,7 @@ public class HiloEscuchador implements Runnable {
 					} else if (opcion.trim().equalsIgnoreCase("2")) {
 						salida.writeUTF(
 								"Por favor escriba el nombre del titulo: (Escriba 'Volver' para ir al menu) \n");
-						System.out.println("El cliente quiere consultar libro por titulo ");
+						System.out.println("El " + hilo.getName() + " quiere consultar libro por titulo ");
 
 						do {
 
@@ -128,7 +128,7 @@ public class HiloEscuchador implements Runnable {
 						// autor e imprimiendo el libro por consola.
 					} else if (opcion.equalsIgnoreCase("3")) {
 						salida.writeUTF("Por favor escriba el nombre del autor: (Escriba 'Volver' para ir al menu) \n");
-						System.out.println("El cliente quiere consultar libro por autor ");
+						System.out.println("El " + hilo.getName() + " quiere consultar libro por autor ");
 
 						do {
 
@@ -162,7 +162,7 @@ public class HiloEscuchador implements Runnable {
 								&& !dosAutores.equalsIgnoreCase("volver"));
 
 						if (dosAutores.equalsIgnoreCase("si") && !dosAutores.equalsIgnoreCase("volver")) {
-							System.out.println("El cliente quiere añadir un libro con dos autores.");
+							System.out.println("El " + hilo.getName() + " quiere añadir un libro con dos autores.");
 
 							salida.writeUTF("Escriba un numero ISBN: ");
 							nuevoIsbn = entrada.readUTF();
@@ -182,11 +182,11 @@ public class HiloEscuchador implements Runnable {
 							listaLibros.add(new Libros(nuevoIsbn, nuevoTitulo, nuevoAutor, nuevoAutor2, nuevoPrecio));
 
 							salida.writeUTF("Libro añadido correctamente. \n" + menu());
-							System.out.println("El cliente ha añadido un nuevo libro con dos autores.");
+							System.out.println("El " + hilo.getName() + " ha añadido un nuevo libro con dos autores.");
 
 						} else if (dosAutores.equalsIgnoreCase("no") && !dosAutores.equalsIgnoreCase("volver")) {
 
-							System.out.println("El cliente quiere añadir un libro.");
+							System.out.println("El " + hilo.getName() + " quiere añadir un libro.");
 
 							salida.writeUTF("Escriba un numero ISBN: ");
 							nuevoIsbn = entrada.readUTF();
@@ -203,7 +203,7 @@ public class HiloEscuchador implements Runnable {
 							listaLibros.add(new Libros(nuevoIsbn, nuevoTitulo, nuevoAutor, nuevoPrecio));
 
 							salida.writeUTF("\n Libro añadido correctamente. \n" + menu());
-							System.out.println("El cliente ha añadido un nuevo libro.");
+							System.out.println("El " + hilo.getName() + " ha añadido un nuevo libro.");
 						}
 					}
 				} else {

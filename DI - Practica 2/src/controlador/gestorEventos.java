@@ -16,9 +16,14 @@ import vista.ventanaMain;
 public class gestorEventos implements ActionListener {
 
     private ventanaMain calculadora;
+    private ventanaCubica cubica;
 
     public gestorEventos(ventanaMain calculadora) {
         this.calculadora = calculadora;
+    }
+
+    public gestorEventos(ventanaCubica cubica) {
+        this.cubica = cubica;
     }
 
     @Override
@@ -148,13 +153,20 @@ public class gestorEventos implements ActionListener {
             } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
                 System.out.println("Error al reproducir el sonido.");
             }
-            JOptionPane.showMessageDialog(null, "Funcionalidad no disponible",
-                     null, JOptionPane.ERROR_MESSAGE, null);
+            JOptionPane.showMessageDialog(null, "Funcionalidad no disponible", null, JOptionPane.ERROR_MESSAGE, null);
 
         } else if (e.getSource() == calculadora.getRaizCubica()) {
             ventanaCubica ventana1 = new ventanaCubica();
             ventana1.setVisible(true);
-            
+            String password = String.copyValueOf(cubica.getPass().getPassword());
+
+            if (e.getSource() == cubica.getButtonPassword()) {
+
+                ventana1.setVisible(false);
+                double resulCubica = (Math.pow(Double.parseDouble(calculadora.getNum1().getText()), (double) 1 / 3));
+                calculadora.getResultado().setText(Double.toString(resulCubica));
+
+            }
         }
     }
 }

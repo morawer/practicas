@@ -10,20 +10,14 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JOptionPane;
 
-import vista.ventanaCubica;
 import vista.ventanaMain;
 
 public class gestorEventos implements ActionListener {
 
     private ventanaMain calculadora;
-    private ventanaCubica cubica;
 
     public gestorEventos(ventanaMain calculadora) {
         this.calculadora = calculadora;
-    }
-
-    public gestorEventos(ventanaCubica cubica) {
-        this.cubica = cubica;
     }
 
     @Override
@@ -156,16 +150,34 @@ public class gestorEventos implements ActionListener {
             JOptionPane.showMessageDialog(null, "Funcionalidad no disponible", null, JOptionPane.ERROR_MESSAGE, null);
 
         } else if (e.getSource() == calculadora.getRaizCubica()) {
-            ventanaCubica ventana1 = new ventanaCubica();
-            ventana1.setVisible(true);
-            String password = String.copyValueOf(cubica.getPass().getPassword());
 
-            if (e.getSource() == cubica.getButtonPassword()) {
+            try {
+                Clip clip = AudioSystem.getClip();
+                clip.open(AudioSystem.getAudioInputStream(new File("src/vista/sounds/sound.wav")));
+                clip.start();
+            } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
+                System.out.println("Error al reproducir el sonido.");
+            }
 
-                ventana1.setVisible(false);
-                double resulCubica = (Math.pow(Double.parseDouble(calculadora.getNum1().getText()), (double) 1 / 3));
-                calculadora.getResultado().setText(Double.toString(resulCubica));
+            String respuesta = JOptionPane.showInputDialog("Escriba la contraseña");
+            if (respuesta.equals("123")) {
+                try {
+                    double numero = Double.parseDouble(calculadora.getNum1().getText());
+                    double resulCubica = Math.pow(numero, (double) 1 / 3);
+                    calculadora.getResultado().setText(Double.toString(resulCubica));
 
+                    calculadora.getNum1().setText("");
+                    calculadora.getNum2().setText("");
+                    calculadora.getNum1().requestFocus();
+
+                } catch (Exception e5) {
+                    calculadora.getNum1().setText("");
+                    calculadora.getNum2().setText("");
+                    calculadora.getNum1().requestFocus();
+                }
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Contraseña incorrecta.", null, JOptionPane.ERROR_MESSAGE, null);
             }
         }
     }

@@ -161,21 +161,61 @@ public class gestorEventos implements ActionListener {
 
             String respuesta = JOptionPane.showInputDialog("Escriba la contraseña");
             if (respuesta.equals("123")) {
-                try {
-                    double numero = Double.parseDouble(calculadora.getNum1().getText());
-                    double resulCubica = Math.pow(numero, (double) 1 / 3);
-                    calculadora.getResultado().setText(Double.toString(resulCubica));
 
-                    calculadora.getNum1().setText("");
-                    calculadora.getNum2().setText("");
-                    calculadora.getNum1().requestFocus();
+                if (!(calculadora.getNum1().getText().matches("[a-zA-Z]*"))
+                        && (calculadora.getNum2().getText().isEmpty())) {
 
-                } catch (Exception e5) {
-                    calculadora.getNum1().setText("");
-                    calculadora.getNum2().setText("");
-                    calculadora.getNum1().requestFocus();
+                    try {
+                        double numero = Double.parseDouble(calculadora.getNum1().getText());
+                        double resulCubica = Math.pow(numero, (double) 1 / 3);
+                        calculadora.getResultado().setText(String.format("%.2f", resulCubica));
+
+                        calculadora.getNum1().setText("");
+                        calculadora.getNum2().setText("");
+                        calculadora.getNum1().requestFocus();
+
+                    } catch (Exception e5) {
+                        calculadora.getNum1().setText("");
+                        calculadora.getNum2().setText("");
+                        calculadora.getNum1().requestFocus();
+                    }
+
+                } else if (!(calculadora.getNum2().getText().matches("[a-zA-Z]*"))
+                        && (calculadora.getNum1().getText().isEmpty())) {
+
+                    try {
+                        double numero = Double.parseDouble(calculadora.getNum2().getText());
+                        double resulCubica = Math.pow(numero, (double) 1 / 3);
+                        calculadora.getResultado().setText(String.format("%.2f", resulCubica));
+
+                        calculadora.getNum1().setText("");
+                        calculadora.getNum2().setText("");
+                        calculadora.getNum1().requestFocus();
+
+                    } catch (Exception e5) {
+                        calculadora.getNum1().setText("");
+                        calculadora.getNum2().setText("");
+                        calculadora.getNum1().requestFocus();
+                    }
+
+                } else if (!(calculadora.getNum1().getText().matches("[a-zA-Z]*"))
+                        && (calculadora.getNum2().getText().matches("[a-zA-Z]*"))) {
+
+                    try {
+                        double numero = Double.parseDouble(calculadora.getNum1().getText());
+                        double resulCubica = Math.pow(numero, (double) 1 / 3);
+                        calculadora.getResultado().setText(String.format("%.2f", resulCubica));
+
+                        calculadora.getNum1().setText("");
+                        calculadora.getNum2().setText("");
+                        calculadora.getNum1().requestFocus();
+
+                    } catch (Exception e5) {
+                        calculadora.getNum1().setText("");
+                        calculadora.getNum2().setText("");
+                        calculadora.getNum1().requestFocus();
+                    }
                 }
-
             } else {
                 JOptionPane.showMessageDialog(null, "Contraseña incorrecta.", null, JOptionPane.ERROR_MESSAGE, null);
             }

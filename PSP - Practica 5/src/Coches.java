@@ -1,57 +1,56 @@
 public class Coches {
 
-    private String matricula;
-    private String marca;
-    private String modelo;
-    private String precio;
+    private byte[] matricula;
+    private byte[] marca;
+    private byte[] modelo;
+    private byte[] precio;
 
-    public Coches(String matricula, String marca, String modelo, String precio) {
-        this.matricula = matricula;
-        this.marca = marca;
-        this.modelo = modelo;
-        this.precio = precio;
-    }
-
-    public Coches() {
-    }
-
-    public String getMatricula() {
-        return matricula;
-    }
-
-    public void setMatricula(String matricula) {
-        this.matricula = matricula;
-    }
-
-    public String getMarca() {
-        return marca;
-    }
-
-    public void setMarca(String marca) {
-        this.marca = marca;
-    }
-
-    public String getModelo() {
-        return modelo;
-    }
-
-    public void setModelo(String modelo) {
-        this.modelo = modelo;
-    }
-
-    public String getPrecio() {
-        return precio + " €.";
-    }
-
-    public void setPrecio(String precio) {
-        this.precio = precio;
-    }
 
     @Override
     public String toString() {
         return "Coches [matricula=" + matricula + ", marca=" + marca + ", modelo=" + modelo + ", precio=" + precio
                 + "]";
     }
-    
-    
+
+    public Coches() {
+    }
+
+    public Coches(byte[] matricula, byte[] marca, byte[] modelo, byte[] precio) {
+        this.matricula = matricula;
+        this.marca = marca;
+        this.modelo = modelo;
+        this.precio = precio;
+    }
+
+    public byte[] getMatricula() {
+        return matricula;
+    }
+
+    public void setMatricula(byte[] matricula) {
+        this.matricula = matricula;
+    }
+
+    public byte[] getMarca() {
+        return marca;
+    }
+
+    public void setMarca(byte[] marca) {
+        this.marca = marca;
+    }
+
+    public byte[] getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(byte[] modelo) {
+        this.modelo = modelo;
+    }
+
+    public byte[] getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(byte[] precio) {
+        this.precio = precio;
+    }
 }

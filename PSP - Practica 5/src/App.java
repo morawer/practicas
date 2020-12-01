@@ -14,8 +14,8 @@ public class App {
             KeyPairGenerator generador = KeyPairGenerator.getInstance("RSA"); // En vez de KeyGenerator usamos
                                                                               // KeyPairGenerator.
             KeyPair claves = generador.generateKeyPair(); // Obtenemos el par de clavespublica y privada).
+            
             Cipher cifrador = Cipher.getInstance("RSA");
-            cifrador.init(Cipher.ENCRYPT_MODE, claves.getPrivate());
 
             Scanner scMenu = new Scanner(System.in);
             Scanner sc = new Scanner(System.in);
@@ -32,6 +32,11 @@ public class App {
             byte[] bytesModeloCifrado;
             byte[] bytesPrecioCifrado;
 
+            byte[] bytesMatriculaDescifrado;
+            byte[] bytesMarcaDescifrado;
+            byte[] bytesModeloDescifrado;
+            byte[] bytesPrecioDescifrado;
+
             String matricula;
             String marca;
             String modelo;
@@ -41,6 +46,11 @@ public class App {
             String marcaCifrado;
             String modeloCifrado;
             String precioCifrado;
+
+            String matriculaDescifrado;
+            String marcaDescifrado;
+            String modeloDescifrado;
+            String precioDescifrado;
 
             byte[] bytesMensajeOriginal = null;
             byte[] bytesMensajeDescifrado = null;
@@ -55,6 +65,7 @@ public class App {
 
                 switch (opcMenu) {
                     case 1:
+                        cifrador.init(Cipher.ENCRYPT_MODE, claves.getPrivate());
                         String mensajeOriginal = sc.nextLine();
                         bytesMensajeOriginal = mensajeOriginal.getBytes();
                         bytesMensajeCifrado = cifrador.doFinal(bytesMensajeOriginal);
@@ -72,39 +83,67 @@ public class App {
                         break;
 
                     case 4:
+
+                        cifrador.init(Cipher.ENCRYPT_MODE, claves.getPrivate());
                         System.out.println("Introduzca la matricula: ");
                         matricula = scCoche.nextLine();
                         bytesMatricula = matricula.getBytes();
                         bytesMatriculaCifrado = cifrador.doFinal(bytesMatricula);
-                        matriculaCifrado = new String(bytesMatriculaCifrado);
+                        //matriculaCifrado = new String(bytesMatriculaCifrado);
 
+                        cifrador.init(Cipher.ENCRYPT_MODE, claves.getPrivate());
                         System.out.println("Introduzca la marca: ");
                         marca = scCoche.nextLine();
                         bytesMarca = marca.getBytes();
                         bytesMarcaCifrado = cifrador.doFinal(bytesMarca);
-                        marcaCifrado = new String(bytesMarcaCifrado);
+                        //marcaCifrado = new String(bytesMarcaCifrado);
 
+                        cifrador.init(Cipher.ENCRYPT_MODE, claves.getPrivate());
                         System.out.println("Introduzca el modelo: ");
                         modelo = scCoche.nextLine();
                         bytesModelo = modelo.getBytes();
                         bytesModeloCifrado = cifrador.doFinal(bytesModelo);
-                        modeloCifrado = new String(bytesModeloCifrado);
+                        //modeloCifrado = new String(bytesModeloCifrado);
 
+                        cifrador.init(Cipher.ENCRYPT_MODE, claves.getPrivate());
                         System.out.println("Introduzca el precio: ");
                         precio = scCoche.nextLine();
                         bytesPrecio = precio.getBytes();
                         bytesPrecioCifrado = cifrador.doFinal(bytesPrecio);
-                        precioCifrado = new String(bytesPrecioCifrado);
+                        //precioCifrado = new String(bytesPrecioCifrado);
 
-                        Coches coche = new Coches(matriculaCifrado, marcaCifrado, modeloCifrado, precioCifrado);
+                        Coches coche = new Coches(bytesMatriculaCifrado, bytesMarcaCifrado, bytesModeloCifrado, bytesPrecioCifrado);
                         cochesList.add(coche);
+                        System.out.println(coche.toString());
                         break;
 
                     case 5:
-                        cifrador.init(Cipher.DECRYPT_MODE, claves.getPublic());
+                        
+                        for (Coches cocheFor : cochesList) {
 
-                        System.out.println(cochesList.toString());
+                            cifrador.init(Cipher.DECRYPT_MODE, claves.getPublic());
+                            bytesMatriculaCifrado = cocheFor.getMatricula();
+                            bytesMatriculaDescifrado = cifrador.doFinal(bytesMatriculaCifrado);
+                            matriculaDescifrado = new String(bytesMatriculaDescifrado);
 
+                            cifrador.init(Cipher.DECRYPT_MODE, claves.getPublic());
+                            bytesMarcaCifrado = cocheFor.getMarca();
+                            bytesMarcaDescifrado = cifrador.doFinal(bytesMarcaCifrado);
+                            marcaDescifrado = new String(bytesMarcaDescifrado);
+
+                            cifrador.init(Cipher.DECRYPT_MODE, claves.getPublic());
+                            bytesModeloCifrado = cocheFor.getModelo();
+                            bytesModeloDescifrado = cifrador.doFinal(bytesModeloCifrado);
+                            modeloDescifrado = new String(bytesModeloDescifrado);
+
+                            cifrador.init(Cipher.DECRYPT_MODE, claves.getPublic()); 
+                            bytesPrecioCifrado = cocheFor.getPrecio();
+                            bytesPrecioDescifrado = cifrador.doFinal(bytesPrecioCifrado);
+                            precioDescifrado = new String(bytesPrecioDescifrado);
+
+                            System.out.println("Coches [matricula=" + matriculaDescifrado + ", marca=" + marcaDescifrado
+                                    + ", modelo=" + modeloDescifrado + ", precio=" + precioDescifrado + "]");
+                        }
                         break;
 
                     default:

@@ -14,7 +14,7 @@ public class App {
             KeyPairGenerator generador = KeyPairGenerator.getInstance("RSA"); // En vez de KeyGenerator usamos
                                                                               // KeyPairGenerator.
             KeyPair claves = generador.generateKeyPair(); // Obtenemos el par de clavespublica y privada).
-            
+
             Cipher cifrador = Cipher.getInstance("RSA");
 
             Scanner scMenu = new Scanner(System.in);
@@ -42,11 +42,6 @@ public class App {
             String modelo;
             String precio;
 
-            String matriculaCifrado;
-            String marcaCifrado;
-            String modeloCifrado;
-            String precioCifrado;
-
             String matriculaDescifrado;
             String marcaDescifrado;
             String modeloDescifrado;
@@ -66,6 +61,7 @@ public class App {
                 switch (opcMenu) {
                     case 1:
                         cifrador.init(Cipher.ENCRYPT_MODE, claves.getPrivate());
+                        System.out.println("Escriba una frase: ");
                         String mensajeOriginal = sc.nextLine();
                         bytesMensajeOriginal = mensajeOriginal.getBytes();
                         bytesMensajeCifrado = cifrador.doFinal(bytesMensajeOriginal);
@@ -83,42 +79,46 @@ public class App {
                         break;
 
                     case 4:
-
                         cifrador.init(Cipher.ENCRYPT_MODE, claves.getPrivate());
                         System.out.println("Introduzca la matricula: ");
                         matricula = scCoche.nextLine();
                         bytesMatricula = matricula.getBytes();
                         bytesMatriculaCifrado = cifrador.doFinal(bytesMatricula);
-                        //matriculaCifrado = new String(bytesMatriculaCifrado);
+                        // matriculaCifrado = new String(bytesMatriculaCifrado);
 
                         cifrador.init(Cipher.ENCRYPT_MODE, claves.getPrivate());
                         System.out.println("Introduzca la marca: ");
                         marca = scCoche.nextLine();
                         bytesMarca = marca.getBytes();
                         bytesMarcaCifrado = cifrador.doFinal(bytesMarca);
-                        //marcaCifrado = new String(bytesMarcaCifrado);
+                        // marcaCifrado = new String(bytesMarcaCifrado);
 
                         cifrador.init(Cipher.ENCRYPT_MODE, claves.getPrivate());
                         System.out.println("Introduzca el modelo: ");
                         modelo = scCoche.nextLine();
                         bytesModelo = modelo.getBytes();
                         bytesModeloCifrado = cifrador.doFinal(bytesModelo);
-                        //modeloCifrado = new String(bytesModeloCifrado);
+                        // modeloCifrado = new String(bytesModeloCifrado);
 
                         cifrador.init(Cipher.ENCRYPT_MODE, claves.getPrivate());
                         System.out.println("Introduzca el precio: ");
                         precio = scCoche.nextLine();
                         bytesPrecio = precio.getBytes();
                         bytesPrecioCifrado = cifrador.doFinal(bytesPrecio);
-                        //precioCifrado = new String(bytesPrecioCifrado);
+                        // precioCifrado = new String(bytesPrecioCifrado);
 
-                        Coches coche = new Coches(bytesMatriculaCifrado, bytesMarcaCifrado, bytesModeloCifrado, bytesPrecioCifrado);
+                        Coches coche = new Coches(bytesMatriculaCifrado, bytesMarcaCifrado, bytesModeloCifrado,
+                                bytesPrecioCifrado);
                         cochesList.add(coche);
+
+                        System.out.println("Coche cifrado: ");
                         System.out.println(coche.toString());
                         break;
 
                     case 5:
-                        
+
+                        System.out.println("******** Lista de coches ********");
+
                         for (Coches cocheFor : cochesList) {
 
                             cifrador.init(Cipher.DECRYPT_MODE, claves.getPublic());
@@ -136,7 +136,7 @@ public class App {
                             bytesModeloDescifrado = cifrador.doFinal(bytesModeloCifrado);
                             modeloDescifrado = new String(bytesModeloDescifrado);
 
-                            cifrador.init(Cipher.DECRYPT_MODE, claves.getPublic()); 
+                            cifrador.init(Cipher.DECRYPT_MODE, claves.getPublic());
                             bytesPrecioCifrado = cocheFor.getPrecio();
                             bytesPrecioDescifrado = cifrador.doFinal(bytesPrecioCifrado);
                             precioDescifrado = new String(bytesPrecioDescifrado);
@@ -149,7 +149,6 @@ public class App {
                     default:
                         break;
                 }
-
             } while (opcMenu != 6);
 
             sc.close();
@@ -164,8 +163,7 @@ public class App {
     }
 
     static String menu() {
-        return "1. Encriptar frase.\n" + "2. Mostrar frase encriptada.\n" + "3. Desencriptar frase.\n"
+        return "\n 1. Encriptar frase.\n" + "2. Mostrar frase encriptada.\n" + "3. Desencriptar frase.\n"
                 + "4. Encriptar coche.\n" + "5. Mostrar coche.\n" + "6. Salir del programa.\n";
-
     }
 }

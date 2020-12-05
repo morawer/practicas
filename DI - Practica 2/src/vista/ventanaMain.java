@@ -22,7 +22,7 @@ public class ventanaMain extends JFrame {
 
     public ventanaMain() {
 
-        setSize(470, 700); // Tamaño de la calculadora
+        setSize(470, 700); // TamaÃ±o de la calculadora
         setLocationRelativeTo(null); // Con "null" hacemos que la calculadora aparezca en el centro de la pantalla
         setDefaultCloseOperation(EXIT_ON_CLOSE); // Si clicamos en la "x" la calculadora se cierra.
         setResizable(false); // Impedimos poder redimensionar la calculadora.
@@ -55,12 +55,12 @@ public class ventanaMain extends JFrame {
             add(num2);
             num2.setBorder(null);
 
-            // Creamos el cajon de texto que mostrará el resultado.
+            // Creamos el cajon de texto que mostrarÃ¡ el resultado.
             resultado = new JTextField();
             resultado.setBounds(180, 420, 160, 30); // Posicionamos en la calculadora.
-            resultado.setBackground(null); // Desactivamos el fondo del cajón.
+            resultado.setBackground(null); // Desactivamos el fondo del cajÃ³n.
             resultado.setFont(font.deriveFont(Font.PLAIN, 36f));
-            resultado.setBorder(null); // Desactivamos los bordes del cajón.
+            resultado.setBorder(null); // Desactivamos los bordes del cajÃ³n.
             add(resultado);
 
         } catch (FontFormatException e) {
@@ -71,7 +71,7 @@ public class ventanaMain extends JFrame {
 
         Image logo1 = new ImageIcon("src/vista/imagenes/casio.png").getImage();
         logo = new JLabel(new ImageIcon(logo1.getScaledInstance(400, 150, Image.SCALE_SMOOTH)));
-        logo.setBounds(80, 35, 310, 150);
+        logo.setBounds(80, 35, 310, 200);
         add(logo);
 
         try {

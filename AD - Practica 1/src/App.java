@@ -11,9 +11,7 @@ import java.util.Scanner;
 public class App {
     public static void main(String[] args) throws Exception {
 
-
         ArrayList<Coche> coches = new ArrayList<>();
-
 
         FileInputStream fichero;
         DataInputStream lector;
@@ -55,76 +53,70 @@ public class App {
             System.out.println("Ha ocurrido un error al cerrar el fichero");
             System.out.println(e.getMessage());
         }
-
+        Scanner sc = new Scanner(System.in);
         String opc = "";
 
         do {
             menu();
-            Scanner sc = new Scanner(System.in);
-
+            
+            opc = "";
             System.out.println("Elige una opción: ");
             opc = sc.next();
-            
 
             switch (opc) {
                 case "1":
-                    Scanner sc2 = new Scanner(System.in);
 
                     System.out.println("ID: ");
-                    String id = sc2.next();
+                    String id = sc.next();
 
                     System.out.println("Matricula: ");
-                    String matricula = sc2.next();
+                    String matricula = sc.next();
 
                     System.out.println("Marca: ");
-                    String marca = sc2.next();
+                    String marca = sc.next();
 
                     System.out.println("Modelo: ");
-                    String modelo = sc2.next();
+                    String modelo = sc.next();
 
                     System.out.println("Color: ");
-                    String color = sc2.next();
+                    String color = sc.next();
 
                     Coche coche = new Coche(id, matricula, marca, modelo, color);
 
                     coches.add(coche);
 
-                    sc2.close();
-                    
                     break;
 
                 case "2":
 
-                    Scanner sc3 = new Scanner(System.in);
                     System.out.print("Introduce un ID: ");
-                    String idBorrador = sc3.next();
+                    String idBorrador = sc.next();
 
                     for (Coche c : coches) {
-                        if (c.getId() == idBorrador) {
+                        if (idBorrador.equals(c.getId())) {
                             System.out.println("El coche con ID: " + c.getId() + " y matricula: " + c.getMatricula()
                                     + " sera borrado.");
                             coches.remove(c);
+                            break;
                         } else {
                             System.out.println("Coche no encontrado.");
                         }
                     }
-                    sc3.close();
+                    
                     break;
 
                 case "3":
 
-                    Scanner sc4 = new Scanner(System.in);
                     System.out.print("Introduce un ID: ");
-                    String idBuscador = sc4.next();
+                    String idBuscador = sc.next();
 
                     for (Coche c : coches) {
-                        if (c.getId() == idBuscador) {
+                        if (c.getId().equals(idBuscador)) {
                             System.out.println(c);
                         } else {
                             System.out.println("Coche no encontrado.");
                         }
                     }
-                    sc4.close();
 
                     break;
 
@@ -168,17 +160,12 @@ public class App {
                     escritor.close();
                     archivoDat.close();
                     break;
-                }
+            }
+
             
 
-                sc.close(); 
-
         } while (!opc.equals("6"));
-        
-        
-
-
-
+        sc.close();
     }
 
     private static void listarCoches(ArrayList<Coche> coches) {

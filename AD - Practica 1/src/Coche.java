@@ -1,6 +1,6 @@
 public class Coche {
 
-    private int id = 0;
+    private String id;
     private String matricula;
     private String marca;
     private String modelo;
@@ -9,19 +9,19 @@ public class Coche {
     public Coche() {
     }
 
-    public Coche(String matricula, String marca, String modelo, String color) {
-        this.id = id++;
+    public Coche(String id, String matricula, String marca, String modelo, String color) {
+        this.id = id;
         this.matricula = matricula;
         this.marca = marca;
         this.modelo = modelo;
         this.color = color;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

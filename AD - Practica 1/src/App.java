@@ -2,6 +2,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.EOFException;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -28,7 +29,7 @@ public class App {
         while (!eof) {
             try {
 
-                String id = lector.readUTF();
+                int id = lector.readInt();
                 String matricula = lector.readUTF();
                 String marca = lector.readUTF();
                 String modelo = lector.readUTF();
@@ -54,123 +55,133 @@ public class App {
             System.out.println(e.getMessage());
         }
         Scanner sc = new Scanner(System.in);
-        String opc = "";
+        int opc = 0;
 
         do {
             menu();
-            
-            opc = "";
+
             System.out.println("Elige una opción: ");
-            opc = sc.next();
+            opc = sc.nextInt();
 
             switch (opc) {
-                case "1":
-
-                    System.out.println("ID: ");
-                    String id = sc.next();
-
-                    System.out.println("Matricula: ");
-                    String matricula = sc.next();
-
-                    System.out.println("Marca: ");
-                    String marca = sc.next();
-
-                    System.out.println("Modelo: ");
-                    String modelo = sc.next();
-
-                    System.out.println("Color: ");
-                    String color = sc.next();
-
-                    Coche coche = new Coche(id, matricula, marca, modelo, color);
-
-                    coches.add(coche);
-
+                case 1:
+                    addCoche(coches, sc);
                     break;
 
-                case "2":
-
-                    System.out.print("Introduce un ID: ");
-                    String idBorrador = sc.next();
-
-                    for (Coche c : coches) {
-                        if (idBorrador.equals(c.getId())) {
-                            System.out.println("El coche con ID: " + c.getId() + " y matricula: " + c.getMatricula()
-                                    + " sera borrado.");
-                            coches.remove(c);
-                            break;
-                        } else {
-                            System.out.println("Coche no encontrado.");
-                        }
-                    }
-                    
+                case 2:
+                    borrarCoche(coches, sc);
                     break;
 
-                case "3":
-
-                    System.out.print("Introduce un ID: ");
-                    String idBuscador = sc.next();
-
-                    for (Coche c : coches) {
-                        if (c.getId().equals(idBuscador)) {
-                            System.out.println(c);
-                        } else {
-                            System.out.println("Coche no encontrado.");
-                        }
-                    }
-
+                case 3:
+                    buscarCoche(coches, sc);
                     break;
 
-                case "4":
-
+                case 4:
                     listarCoches(coches);
                     break;
 
-                case "5":
-
-                    try {
-                        FileWriter archivoTxt = new FileWriter("fichajes.txt", true);
-                        for (Coche c : coches) {
-                            archivoTxt.write(c.toString());
-                        }
-                        archivoTxt.close();
-
-                    } catch (IOException e) {
-                        System.out.println("Ha ocurrido un error al escribir el archivo de texto.");
-                        e.printStackTrace();
-                    }
+                case 5:
+                    crearTxt(coches);
                     break;
 
-                case "6":
-
-                    FileOutputStream archivoDat;
-                    DataOutputStream escritor;
-
-                    archivoDat = new FileOutputStream("coches.dat", false);
-                    escritor = new DataOutputStream(archivoDat);
-
-                    for (Coche c : coches) {
-                        escritor.writeUTF(c.getId());
-                        escritor.writeUTF(c.getMatricula());
-                        escritor.writeUTF(c.getMarca());
-                        escritor.writeUTF(c.getModelo());
-                        escritor.writeUTF(c.getColor());
-
-                    }
-
-                    escritor.close();
-                    archivoDat.close();
+                case 6:
+                    crearDat(coches);
                     break;
             }
-
-            
-
-        } while (!opc.equals("6"));
+        } while (opc != 6);
         sc.close();
+    }
+
+    private static void crearDat(ArrayList<Coche> coches) throws FileNotFoundException, IOException {
+        FileOutputStream archivoDat;
+        DataOutputStream escritor;
+
+        archivoDat = new FileOutputStream("coches.dat", false);
+        escritor = new DataOutputStream(archivoDat);
+
+        for (Coche c : coches) {
+            escritor.writeInt(c.getId());
+            escritor.writeUTF(c.getMatricula());
+            escritor.writeUTF(c.getMarca());
+            escritor.writeUTF(c.getModelo());
+            escritor.writeUTF(c.getColor());
+        }
+        escritor.close();
+        archivoDat.close();
+    }
+
+    private static void crearTxt(ArrayList<Coche> coches) {
+        try {
+            FileWriter archivoTxt = new FileWriter("fichajes.txt", false);
+            for (Coche c : coches) {
+                archivoTxt.write(c.toString());
+            }
+            archivoTxt.close();
+
+        } catch (IOException e) {
+            System.out.println("Ha ocurrido un error al escribir el archivo de texto.");
+            e.printStackTrace();
+        }
+    }
+
+    private static void buscarCoche(ArrayList<Coche> coches, Scanner sc) {
+        System.out.print("Introduce un ID: ");
+        int idBuscador = sc.nextInt();
+        boolean noEncontrado = true;
+
+        for (Coche c : coches) {
+            if (c.getId() == idBuscador) {
+                System.out.println(c);
+                noEncontrado = false;
+            }
+        }
+        if (noEncontrado == true) {
+            System.out.println("Coche no encontrado.");
+        }
+    }
+
+    private static void borrarCoche(ArrayList<Coche> coches, Scanner sc) {
+        System.out.print("Introduce un ID: ");
+        int idBorrador = sc.nextInt();
+        boolean noEncontrado = true;
+
+        for (Coche c : coches) {
+            if (c.getId() == idBorrador) {
+                System.out.println(
+                        "El coche con ID: " + c.getId() + " y matricula: " + c.getMatricula() + " sera borrado.");
+                coches.remove(c);
+                noEncontrado = false;
+                break;
+            }
+        }
+        if (noEncontrado == true) {
+            System.out.println("Coche no encontrado.");
+        }
+    }
+
+    private static void addCoche(ArrayList<Coche> coches, Scanner sc) {
+        System.out.println("ID: ");
+        int id = sc.nextInt();
+
+        System.out.println("Matricula: ");
+        String matricula = sc.next();
+
+        System.out.println("Marca: ");
+        String marca = sc.next();
+
+        System.out.println("Modelo: ");
+        String modelo = sc.next();
+
+        System.out.println("Color: ");
+        String color = sc.next();
+
+        Coche coche = new Coche(id, matricula, marca, modelo, color);
+
+        coches.add(coche);
     }
 
     private static void listarCoches(ArrayList<Coche> coches) {
         for (Coche c : coches) {
-            System.out.println();
             System.out.println(c);
             System.out.println();
         }

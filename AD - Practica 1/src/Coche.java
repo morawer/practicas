@@ -1,6 +1,6 @@
 public class Coche {
 
-    private String id;
+    private int id;
     private String matricula;
     private String marca;
     private String modelo;
@@ -9,7 +9,7 @@ public class Coche {
     public Coche() {
     }
 
-    public Coche(String id, String matricula, String marca, String modelo, String color) {
+    public Coche(int id, String matricula, String marca, String modelo, String color) {
         this.id = id;
         this.matricula = matricula;
         this.marca = marca;
@@ -17,11 +17,11 @@ public class Coche {
         this.color = color;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -59,7 +59,9 @@ public class Coche {
 
     @Override
     public String toString() {
-        return "Coche [color=" + color + ", id=" + id + ", marca=" + marca + ", matricula=" + matricula + ", modelo="
-                + modelo + "]";
+        return "Coche [id=" + id + ", matricula=" + matricula + ", marca=" + marca + ", modelo="
+                + modelo + ", color=" + color +"] \n";
     }
+
+ 
 }

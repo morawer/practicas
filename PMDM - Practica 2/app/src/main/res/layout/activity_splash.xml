@@ -9,17 +9,16 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/gradient"/>
-    
+        android:background="@drawable/gradient" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/titulo"
-        android:textColor="@color/secondary_text"
-        android:textSize="45dp"
-        android:textAlignment="center"
         android:layout_marginTop="200dp"
-        ></TextView>
+        android:text="@string/titulo"
+        android:textAlignment="center"
+        android:textColor="@color/secondary_text"
+        android:textSize="45dp"></TextView>
 
 
 </FrameLayout>

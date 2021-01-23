@@ -5,4 +5,6 @@
     <string name="pass">Contraseña</string>
     <string name="entrarLogin">ENTRAR</string>
     <string name="crear_usuario">CREAR USUARIO</string>
+    <string name="add_tarea">Añadir tarea.</string>
+    <string name="toast_error_pass">Usuario o contraseña incorrecta.</string>
 </resources>

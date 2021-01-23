@@ -12,9 +12,10 @@
         android:background="@drawable/gradient" />
 
     <TextView
+        android:id="@+id/tituloSplash"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="20dp"
         android:text="@string/titulo"
         android:textAlignment="center"
         android:textColor="@color/secondary_text"

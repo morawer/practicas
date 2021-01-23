@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.TextView;
 
 public class SplashActivity extends AppCompatActivity implements Animation.AnimationListener {
 
@@ -12,7 +14,13 @@ public class SplashActivity extends AppCompatActivity implements Animation.Anima
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        getActionBar().hide();
+        getSupportActionBar().hide();
+
+        TextView tituloSplash = (TextView) findViewById(R.id.tituloSplash);
+
+        Animation animSplash = AnimationUtils.loadAnimation(this, R.anim.anim_splash);
+        tituloSplash.startAnimation(animSplash);
+        animSplash.setAnimationListener(this);
 
     }
 
@@ -26,8 +34,6 @@ public class SplashActivity extends AppCompatActivity implements Animation.Anima
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
         finish();
-
-
     }
 
     @Override

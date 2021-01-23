@@ -16,7 +16,7 @@
         android:id="@+id/titulo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="20dp"
         android:text="@string/titulo"
         android:textAlignment="center"
         android:textColor="@color/secondary_text"
@@ -37,7 +37,7 @@
             android:id="@+id/user"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="50dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -74,9 +74,10 @@
         android:layout_below="@+id/linearLogin"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
+        android:background="@drawable/boton"
         android:text="@string/entrarLogin"
         android:textSize="25dp"
-        android:background="@drawable/boton" />
+        android:onClick="entrarButon"/>
 
 
     <Button
@@ -84,13 +85,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/botonLogin"
-        android:layout_marginTop="10dp"
         android:layout_marginLeft="16dp"
+        android:layout_marginTop="10dp"
         android:layout_marginRight="16dp"
-        android:text="@string/crear_usuario"
-        android:textSize="25dp"
         android:background="@drawable/boton"
-        android:onClick="crearUsuario"/>
+        android:onClick="crearUsuario"
+        android:text="@string/crear_usuario"
+        android:textSize="25dp" />
 
 </RelativeLayout>
 

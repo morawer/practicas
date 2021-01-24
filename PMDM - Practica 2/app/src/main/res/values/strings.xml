@@ -7,4 +7,6 @@
     <string name="crear_usuario">CREAR USUARIO</string>
     <string name="add_tarea">Añadir tarea.</string>
     <string name="toast_error_pass">Usuario o contraseña incorrecta.</string>
+    <string name="item_de_tarea">item de tarea</string>
+    <string name="hecho">Hecho</string>
 </resources>

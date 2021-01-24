@@ -62,6 +62,11 @@ public class ControladorDB extends SQLiteOpenHelper {
 
         Cursor cursor = db.rawQuery("SELECT * FROM TAREAS", null);
         return cursor.getCount();
+    }
 
+    public void borrarTarea(String tarea) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete("TAREAS", "NOMBRE = ?", new String[]{tarea});
     }
 }

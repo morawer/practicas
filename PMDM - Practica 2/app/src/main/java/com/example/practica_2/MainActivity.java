@@ -8,10 +8,12 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.practica_2.db.ControladorDB;
@@ -64,5 +66,13 @@ public class MainActivity extends AppCompatActivity {
             miAdapter = new ArrayAdapter<>(this, R.layout.item_tarea, R.id.textItem, controladorDB.obtenerTareas());
             listViewTareas.setAdapter(miAdapter);
         }
+    }
+
+    public void borrarTarea(View view) {
+        View parent = (View) view.getParent();
+        TextView tareaTextView = (TextView) parent.findViewById(R.id.textItem);
+        String tarea = tareaTextView.getText().toString();
+        controladorDB.borrarTarea(tarea);
+        actualizarUI();
     }
 }

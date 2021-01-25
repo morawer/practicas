@@ -13,15 +13,30 @@ public class ControladorDB extends SQLiteOpenHelper {
         super(context, "com.example.practica_2.db", null, 1);
     }
 
+
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        db.execSQL("CREATE TABLE TAREAS (ID INTEGER PRIMARY KEY AUTOINCREMENT, NOMBRE TEXT NOT NULL);");
+        db.execSQL("CREATE TABLE USUARIOS (USERID INTEGER PRIMARY KEY AUTOINCREMENT, USER TEXT NOT NULL, PASS TEXT NOT NULL);");
+        db.execSQL("CREATE TABLE TAREAS (ID INTEGER PRIMARY KEY AUTOINCREMENT, NOMBRE TEXT NOT NULL, USERID INTEGER NOT NULL, FOREIGN KEY(USERID)REFERENCES USUARIOS(USERID))");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
 
+    }
+
+    public void addUser(String nombre, String pass){
+        ContentValues registroUser = new ContentValues();
+        ContentValues registroPass = new ContentValues();
+        registroUser.put("USER", nombre);
+        registroPass.put("PASS", pass);
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        db.insert("USUARIOS", null, registroUser);
+        db.insert("USUARIOS", null, registroPass);
+        db.close();
     }
 
     public void addTarea(String tarea) {

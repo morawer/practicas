@@ -18,9 +18,11 @@ public class LoginActivity extends AppCompatActivity {
         getSupportActionBar().hide();
     }
 
-    public void crearUsuario(View view) {
-        Toast toast = Toast.makeText(this, "Función no disponible.", Toast.LENGTH_LONG);
-        toast.show();
+    public void botonCrearUsuario (View view) {
+
+        Intent intent = new Intent(this, UserActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     public void entrarButon(View view) {

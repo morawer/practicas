@@ -9,4 +9,6 @@
     <string name="toast_error_pass">Usuario o contraseña incorrecta.</string>
     <string name="item_de_tarea">item de tarea</string>
     <string name="hecho">Hecho</string>
+    <string name="passUser">Introduce una contraseña</string>
+    <string name="nombreUser">Introduce tu nombre</string>
 </resources>

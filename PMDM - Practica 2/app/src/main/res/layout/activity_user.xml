@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    tools:context=".UserActivity">
 
 
     <View
@@ -39,10 +39,10 @@
             android:layout_marginTop="50dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/user"
+                android:id="@+id/nombreUser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/usuario"
+                android:hint="@string/nombreUser"
                 android:textColor="@color/secondary_text"
                 android:textColorHint="@color/accent"
                 android:textSize="21sp" />
@@ -55,10 +55,10 @@
             android:layout_marginTop="10dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/password"
+                android:id="@+id/passwordUser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/pass"
+                android:hint="@string/passUser"
                 android:inputType="textPassword"
                 android:textColor="@color/secondary_text"
                 android:textColorHint="@color/accent"
@@ -68,28 +68,15 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/botonLogin"
+        android:id="@+id/botonCrearUser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/linearLogin"
         android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:background="@drawable/boton"
-        android:text="@string/entrarLogin"
-        android:textSize="25dp"
-        android:onClick="entrarButon"/>
-
-
-    <Button
-        android:id="@+id/botonCrearUsuario"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/botonLogin"
-        android:layout_marginLeft="16dp"
         android:layout_marginTop="10dp"
         android:layout_marginRight="16dp"
         android:background="@drawable/boton"
-        android:onClick="botonCrearUsuario"
+        android:onClick="crearUsuario"
         android:text="@string/crear_usuario"
         android:textSize="25dp" />
 

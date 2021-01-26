@@ -17,8 +17,8 @@ public class ControladorDB extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        db.execSQL("CREATE TABLE USUARIOS (USERID INTEGER PRIMARY KEY AUTOINCREMENT, USER TEXT NOT NULL, PASS TEXT NOT NULL);");
-        db.execSQL("CREATE TABLE TAREAS (ID INTEGER PRIMARY KEY AUTOINCREMENT, NOMBRE TEXT NOT NULL, USERID INTEGER NOT NULL, FOREIGN KEY(USERID)REFERENCES USUARIOS(USERID))");
+        db.execSQL("CREATE TABLE USUARIOS (ID INTEGER PRIMARY KEY AUTOINCREMENT, USER TEXT NOT NULL, PASS TEXT NOT NULL);");
+        db.execSQL("CREATE TABLE TAREAS (ID INTEGER, NOMBRE TEXT NOT NULL, IDUSER INTEGER REFERENCES USUARIOS(ID));");
     }
 
     @Override
@@ -26,16 +26,32 @@ public class ControladorDB extends SQLiteOpenHelper {
 
     }
 
-    public void addUser(String nombre, String pass){
+    public boolean loginUser(String usuario, String pass) {
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT * FROM USUARIOS WHERE USER = '" + usuario + "' AND PASS = '" + pass +"'", null);
+
+        int regs = cursor.getCount();
+
+        if (regs == 0) {
+            db.close();
+            return false;
+        } else {
+            return true;
+        }
+
+    }
+
+    public void addUser(String nombre, String pass) {
         ContentValues registroUser = new ContentValues();
-        ContentValues registroPass = new ContentValues();
+
         registroUser.put("USER", nombre);
-        registroPass.put("PASS", pass);
+        registroUser.put("PASS", pass);
 
         SQLiteDatabase db = this.getWritableDatabase();
 
         db.insert("USUARIOS", null, registroUser);
-        db.insert("USUARIOS", null, registroPass);
         db.close();
     }
 
@@ -50,10 +66,10 @@ public class ControladorDB extends SQLiteOpenHelper {
         db.close();
     }
 
-    public String[] obtenerTareas() {
+    public String[] obtenerTareas(int idUser) {
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursor = db.rawQuery("SELECT * FROM TAREAS", null);
+        Cursor cursor = db.rawQuery("SELECT * FROM TAREAS WHERE IDUSER = '" + idUser + "'", null);
 
         int regs = cursor.getCount();
 

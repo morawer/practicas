@@ -11,16 +11,19 @@ import com.google.android.material.textfield.TextInputEditText;
 
 public class UserActivity extends AppCompatActivity {
 
-    ControladorDB dbUser = new ControladorDB(this);
+    ControladorDB dbUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
+        dbUser = new ControladorDB(this);
+        getSupportActionBar().hide();
+
     }
 
     public void crearUsuario(View view) {
-        
+
         TextInputEditText nombreUser = (TextInputEditText) findViewById(R.id.nombreUser);
         TextInputEditText passUser = (TextInputEditText) findViewById(R.id.passwordUser);
 

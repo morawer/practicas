@@ -39,6 +39,11 @@ public class LoginActivity extends AppCompatActivity {
 
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
+
+             int id = controladorDB.getIdUser(userName);
+
+
+            intent.putExtra("userId", id);
             finish();
 
         } else {

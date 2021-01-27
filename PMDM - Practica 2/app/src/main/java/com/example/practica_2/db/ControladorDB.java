@@ -9,6 +9,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
 
 public class ControladorDB extends SQLiteOpenHelper {
+
+
+
     public ControladorDB(@Nullable Context context) {
         super(context, "com.example.practica_2.db", null, 1);
     }
@@ -18,7 +21,8 @@ public class ControladorDB extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 
         db.execSQL("CREATE TABLE USUARIOS (ID INTEGER PRIMARY KEY AUTOINCREMENT, USER TEXT NOT NULL, PASS TEXT NOT NULL);");
-        db.execSQL("CREATE TABLE TAREAS (ID INTEGER, NOMBRE TEXT NOT NULL, IDUSER INTEGER REFERENCES USUARIOS(ID));");
+        db.execSQL("CREATE TABLE TAREAS (ID INTEGER PRIMARY KEY, NOMBRE TEXT NOT NULL, USERID INTEGER, FOREIGN KEY (USERID) REFERENCES USUARIOS (ID));");
+
     }
 
     @Override
@@ -30,7 +34,7 @@ public class ControladorDB extends SQLiteOpenHelper {
 
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursor = db.rawQuery("SELECT * FROM USUARIOS WHERE USER = '" + usuario + "' AND PASS = '" + pass +"'", null);
+        Cursor cursor = db.rawQuery("SELECT * FROM USUARIOS WHERE USER = '" + usuario + "' AND PASS = '" + pass + "'", null);
 
         int regs = cursor.getCount();
 
@@ -40,10 +44,11 @@ public class ControladorDB extends SQLiteOpenHelper {
         } else {
             return true;
         }
-
     }
 
+
     public void addUser(String nombre, String pass) {
+
         ContentValues registroUser = new ContentValues();
 
         registroUser.put("USER", nombre);
@@ -55,10 +60,11 @@ public class ControladorDB extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void addTarea(String tarea) {
+    public void addTarea(String tarea, int userId) {
 
         ContentValues registro = new ContentValues();
         registro.put("NOMBRE", tarea);
+        registro.put("USERID", userId);
 
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -66,10 +72,10 @@ public class ControladorDB extends SQLiteOpenHelper {
         db.close();
     }
 
-    public String[] obtenerTareas(int idUser) {
+    public String[] obtenerTareas(int userId) {
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursor = db.rawQuery("SELECT * FROM TAREAS WHERE IDUSER = '" + idUser + "'", null);
+        Cursor cursor = db.rawQuery("SELECT * FROM TAREAS WHERE USERID = '" + userId + "'", null);
 
         int regs = cursor.getCount();
 
@@ -90,14 +96,20 @@ public class ControladorDB extends SQLiteOpenHelper {
 
     public int numeroRegistros() {
         SQLiteDatabase db = this.getReadableDatabase();
-
         Cursor cursor = db.rawQuery("SELECT * FROM TAREAS", null);
         return cursor.getCount();
     }
 
     public void borrarTarea(String tarea) {
-
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete("TAREAS", "NOMBRE = ?", new String[]{tarea});
+    }
+
+    public int getIdUser (String nombreUser) {
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT ID FROM USUARIOS WHERE USER = '" + nombreUser + "'", null);
+
+        return cursor.getInt(1);
     }
 }

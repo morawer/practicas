@@ -5,6 +5,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     ControladorDB controladorDB;
     private ArrayAdapter<String> miAdapter;
     ListView listViewTareas;
+    int idUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +32,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         controladorDB = new ControladorDB(this);
         listViewTareas = (ListView) findViewById(R.id.listaTareas);
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        idUser = bundle.getInt("userId");
         actualizarUI();
     }
 
@@ -49,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         String tarea = cajaTexto.getText().toString();
-                        controladorDB.addTarea(tarea);
+                        controladorDB.addTarea(tarea, idUser);
                         actualizarUI();
                     }
                 })
@@ -63,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         if (controladorDB.numeroRegistros() == 0) {
             listViewTareas.setAdapter(null);
         } else {
-            miAdapter = new ArrayAdapter<>(this, R.layout.item_tarea, R.id.textItem, controladorDB.obtenerTareas());
+            miAdapter = new ArrayAdapter<>(this, R.layout.item_tarea, R.id.textItem, controladorDB.obtenerTareas(idUser));
             listViewTareas.setAdapter(miAdapter);
         }
     }

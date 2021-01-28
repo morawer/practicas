@@ -10,8 +10,6 @@ import androidx.annotation.Nullable;
 
 public class ControladorDB extends SQLiteOpenHelper {
 
-
-
     public ControladorDB(@Nullable Context context) {
         super(context, "com.example.practica_2.db", null, 1);
     }
@@ -21,7 +19,7 @@ public class ControladorDB extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 
         db.execSQL("CREATE TABLE USUARIOS (ID INTEGER PRIMARY KEY AUTOINCREMENT, USER TEXT NOT NULL, PASS TEXT NOT NULL);");
-        db.execSQL("CREATE TABLE TAREAS (ID INTEGER PRIMARY KEY, NOMBRE TEXT NOT NULL, USERID INTEGER, FOREIGN KEY (USERID) REFERENCES USUARIOS (ID));");
+        db.execSQL("CREATE TABLE TAREAS (ID INTEGER PRIMARY KEY, NOMBRE TEXT NOT NULL, USERNOMBRE TEXT, FOREIGN KEY (USERNOMBRE) REFERENCES USUARIOS (USER));");
 
     }
 
@@ -60,11 +58,11 @@ public class ControladorDB extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void addTarea(String tarea, int userId) {
+    public void addTarea(String tarea, String nombreUser) {
 
         ContentValues registro = new ContentValues();
         registro.put("NOMBRE", tarea);
-        registro.put("USERID", userId);
+        registro.put("USERNOMBRE", nombreUser);
 
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -72,10 +70,10 @@ public class ControladorDB extends SQLiteOpenHelper {
         db.close();
     }
 
-    public String[] obtenerTareas(int userId) {
+    public String[] obtenerTareas(String user) {
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursor = db.rawQuery("SELECT * FROM TAREAS WHERE USERID = '" + userId + "'", null);
+        Cursor cursor = db.rawQuery("select * from tareas where usernombre= ?", new String[]{String.valueOf(user)});
 
         int regs = cursor.getCount();
 
@@ -94,9 +92,9 @@ public class ControladorDB extends SQLiteOpenHelper {
         }
     }
 
-    public int numeroRegistros() {
+    public int numeroRegistros(String user) {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM TAREAS", null);
+        Cursor cursor = db.rawQuery("SELECT * FROM TAREAS where usernombre= ?", new String[]{String.valueOf(user)});
         return cursor.getCount();
     }
 
@@ -108,8 +106,8 @@ public class ControladorDB extends SQLiteOpenHelper {
     public int getIdUser (String nombreUser) {
 
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT ID FROM USUARIOS WHERE USER = '" + nombreUser + "'", null);
+        Cursor cursor = db.rawQuery("SELECT ID FROM USUARIOS WHERE USER = ?", new String[]{nombreUser});
 
-        return cursor.getInt(1);
+        return cursor.getInt(0);
     }
 }

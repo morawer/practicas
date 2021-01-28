@@ -1,21 +1,18 @@
 package com.example.practica_2;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.practica_2.db.ControladorDB;
 
@@ -24,17 +21,14 @@ public class MainActivity extends AppCompatActivity {
     ControladorDB controladorDB;
     private ArrayAdapter<String> miAdapter;
     ListView listViewTareas;
-    int idUser;
 
-    @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         controladorDB = new ControladorDB(this);
         listViewTareas = (ListView) findViewById(R.id.listaTareas);
-        Intent intent = getIntent();
-        Bundle bundle = intent.getExtras();
-        idUser = bundle.getInt("userId");
+
         actualizarUI();
     }
 
@@ -46,6 +40,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        Bundle extra = getIntent().getExtras();
+        String userNombre = extra.getString("nombreUser");
+
         final EditText cajaTexto = new EditText(this);
         AlertDialog dialog = new AlertDialog.Builder(this)
                 .setMessage("Escribe la tarea.")
@@ -54,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         String tarea = cajaTexto.getText().toString();
-                        controladorDB.addTarea(tarea, idUser);
+                        controladorDB.addTarea(tarea, userNombre);
                         actualizarUI();
                     }
                 })
@@ -65,10 +62,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void actualizarUI() {
-        if (controladorDB.numeroRegistros() == 0) {
+        Bundle extra = getIntent().getExtras();
+        String userNombre = extra.getString("nombreUser");
+
+        if (controladorDB.numeroRegistros(userNombre) == 0) {
             listViewTareas.setAdapter(null);
         } else {
-            miAdapter = new ArrayAdapter<>(this, R.layout.item_tarea, R.id.textItem, controladorDB.obtenerTareas(idUser));
+            miAdapter = new ArrayAdapter<>(this, R.layout.item_tarea, R.id.textItem, controladorDB.obtenerTareas(userNombre));
             listViewTareas.setAdapter(miAdapter);
         }
     }

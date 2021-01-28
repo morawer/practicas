@@ -11,6 +11,7 @@ import com.example.practica_2.db.ControladorDB;
 import com.google.android.material.textfield.TextInputEditText;
 
 public class LoginActivity extends AppCompatActivity {
+    public static final String EXTRA_MESSAGE = "";
     ControladorDB controladorDB;
 
     @Override
@@ -38,12 +39,9 @@ public class LoginActivity extends AppCompatActivity {
         if (controladorDB.loginUser(userName, userPass)) {
 
             Intent intent = new Intent(this, MainActivity.class);
+            intent.putExtra("nombreUser", userName);
             startActivity(intent);
 
-             int id = controladorDB.getIdUser(userName);
-
-
-            intent.putExtra("userId", id);
             finish();
 
         } else {

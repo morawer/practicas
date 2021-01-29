@@ -3,6 +3,7 @@ package com.example.practica_2;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -17,6 +18,9 @@ public class SplashActivity extends AppCompatActivity implements Animation.Anima
         getSupportActionBar().hide();
 
         TextView tituloSplash = (TextView) findViewById(R.id.tituloSplash);
+
+        Typeface font = Typeface.createFromAsset(getAssets(), "Rashkey.ttf");
+        tituloSplash.setTypeface(font);
 
         Animation animSplash = AnimationUtils.loadAnimation(this, R.anim.anim_splash);
         tituloSplash.startAnimation(animSplash);

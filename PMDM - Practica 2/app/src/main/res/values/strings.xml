@@ -11,4 +11,6 @@
     <string name="hecho">Hecho</string>
     <string name="passUser">Introduce una contraseña</string>
     <string name="nombreUser">Introduce tu nombre</string>
+    <string name="usuarioCreado">Usuario creado.</string>
+    <string name="usuarioExiste">El usuario ya existe.</string>
 </resources>

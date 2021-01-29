@@ -3,15 +3,16 @@ package com.example.practica_2;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.practica_2.db.ControladorDB;
 import com.google.android.material.textfield.TextInputEditText;
 
 public class LoginActivity extends AppCompatActivity {
-    public static final String EXTRA_MESSAGE = "";
     ControladorDB controladorDB;
 
     @Override
@@ -20,9 +21,13 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         getSupportActionBar().hide();
         controladorDB = new ControladorDB(this);
+
+        TextView tittle = (TextView)findViewById(R.id.titulo);
+        Typeface font = Typeface.createFromAsset(getAssets(), "Rashkey.ttf");
+        tittle.setTypeface(font);
     }
 
-    public void botonCrearUsuario (View view) {
+    public void botonCrearUsuario(View view) {
 
         Intent intent = new Intent(this, UserActivity.class);
         startActivity(intent);
@@ -41,7 +46,6 @@ public class LoginActivity extends AppCompatActivity {
             Intent intent = new Intent(this, MainActivity.class);
             intent.putExtra("nombreUser", userName);
             startActivity(intent);
-
             finish();
 
         } else {

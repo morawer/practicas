@@ -28,7 +28,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         controladorDB = new ControladorDB(this);
         listViewTareas = (ListView) findViewById(R.id.listaTareas);
-
+        Bundle extra = getIntent().getExtras();
+        String userNombre = extra.getString("nombreUser");
+        getSupportActionBar().setTitle("Tareas de " + userNombre +".");
         actualizarUI();
     }
 
@@ -71,6 +73,32 @@ public class MainActivity extends AppCompatActivity {
             miAdapter = new ArrayAdapter<>(this, R.layout.item_tarea, R.id.textItem, controladorDB.obtenerTareas(userNombre));
             listViewTareas.setAdapter(miAdapter);
         }
+    }
+
+    public void editarTarea () {
+
+        Bundle extra = getIntent().getExtras();
+        String userNombre = extra.getString("nombreUser");
+
+        final EditText cajaTexto = new EditText(this);
+        AlertDialog dialog = new AlertDialog.Builder(this)
+                .setMessage("Escribe la tarea.")
+                .setView(cajaTexto)
+                .setPositiveButton("Editar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        String tarea = cajaTexto.getText().toString();
+                        controladorDB.addTarea(tarea, userNombre);
+                        actualizarUI();
+                    }
+                })
+                .setNegativeButton("Cancelar", null)
+                .create();
+        dialog.show();
+        return super.onOptionsItemSelected(item);
+    }
+
+
     }
 
     public void borrarTarea(View view) {

@@ -20,7 +20,6 @@ public class ControladorDB extends SQLiteOpenHelper {
 
         db.execSQL("CREATE TABLE USUARIOS (ID INTEGER PRIMARY KEY AUTOINCREMENT, USER TEXT NOT NULL, PASS TEXT NOT NULL);");
         db.execSQL("CREATE TABLE TAREAS (ID INTEGER PRIMARY KEY, NOMBRE TEXT NOT NULL, USERNOMBRE TEXT, FOREIGN KEY (USERNOMBRE) REFERENCES USUARIOS (USER));");
-
     }
 
     @Override
@@ -45,17 +44,28 @@ public class ControladorDB extends SQLiteOpenHelper {
     }
 
 
-    public void addUser(String nombre, String pass) {
+    public boolean addUser(String name, String pass) {
 
-        ContentValues registroUser = new ContentValues();
+        SQLiteDatabase db;
+        db = this.getReadableDatabase();
 
-        registroUser.put("USER", nombre);
-        registroUser.put("PASS", pass);
+        Cursor cursor = db.rawQuery("SELECT * FROM USUARIOS WHERE USER = '" + name + "'", null);
 
-        SQLiteDatabase db = this.getWritableDatabase();
+        int regs = cursor.getCount();
 
-        db.insert("USUARIOS", null, registroUser);
-        db.close();
+        if (regs == 0) {
+            ContentValues registroUser = new ContentValues();
+            registroUser.put("USER", name);
+            registroUser.put("PASS", pass);
+
+            db = this.getWritableDatabase();
+
+            db.insert("USUARIOS", null, registroUser);
+            db.close();
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public void addTarea(String tarea, String nombreUser) {
@@ -103,7 +113,7 @@ public class ControladorDB extends SQLiteOpenHelper {
         db.delete("TAREAS", "NOMBRE = ?", new String[]{tarea});
     }
 
-    public int getIdUser (String nombreUser) {
+    public int getIdUser(String nombreUser) {
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT ID FROM USUARIOS WHERE USER = ?", new String[]{nombreUser});

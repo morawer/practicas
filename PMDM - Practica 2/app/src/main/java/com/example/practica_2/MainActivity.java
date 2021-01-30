@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -75,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void editarTarea () {
+    public void editarTarea (View view) {
 
         Bundle extra = getIntent().getExtras();
         String userNombre = extra.getString("nombreUser");
@@ -87,25 +88,27 @@ public class MainActivity extends AppCompatActivity {
                 .setPositiveButton("Editar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        String tarea = cajaTexto.getText().toString();
-                        controladorDB.addTarea(tarea, userNombre);
+                        View parent = (View) view.getParent();
+                        TextView tareaTextView = (TextView) parent.findViewById(R.id.textItem);
+                        String tarea = tareaTextView.getText().toString();
+                        String tareaNueva = cajaTexto.getText().toString();
+                        controladorDB.editTarea(tareaNueva, tarea, userNombre);
                         actualizarUI();
                     }
                 })
                 .setNegativeButton("Cancelar", null)
                 .create();
         dialog.show();
-        return super.onOptionsItemSelected(item);
     }
 
-
-    }
 
     public void borrarTarea(View view) {
         View parent = (View) view.getParent();
         TextView tareaTextView = (TextView) parent.findViewById(R.id.textItem);
         String tarea = tareaTextView.getText().toString();
         controladorDB.borrarTarea(tarea);
+        Toast toast = Toast.makeText(this, R.string.tareaBorrada, Toast.LENGTH_LONG);
+        toast.show();
         actualizarUI();
     }
 }

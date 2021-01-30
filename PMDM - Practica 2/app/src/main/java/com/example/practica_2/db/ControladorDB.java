@@ -5,8 +5,11 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+
+import com.example.practica_2.R;
 
 public class ControladorDB extends SQLiteOpenHelper {
 
@@ -78,6 +81,15 @@ public class ControladorDB extends SQLiteOpenHelper {
 
         db.insert("TAREAS", null, registro);
         db.close();
+    }
+
+    public void editTarea (String nuevaTarea, String tarea, String usuario) {
+
+        ContentValues update = new ContentValues();
+        update.put("NOMBRE", nuevaTarea);
+        
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.update("TAREAS",update, "NOMBRE = ? and USERNOMBRE = ?", new String[]{tarea, usuario});
     }
 
     public String[] obtenerTareas(String user) {

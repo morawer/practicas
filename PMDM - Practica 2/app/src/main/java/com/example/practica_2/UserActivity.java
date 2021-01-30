@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,10 +24,9 @@ public class UserActivity extends AppCompatActivity {
         dbUser = new ControladorDB(this);
         getSupportActionBar().hide();
 
-        TextView tittle = (TextView)findViewById(R.id.titulo);
+        TextView tittle = (TextView) findViewById(R.id.titulo);
         Typeface font = Typeface.createFromAsset(getAssets(), "Rashkey.ttf");
         tittle.setTypeface(font);
-
     }
 
     public void crearUsuario(View view) {
@@ -40,11 +40,10 @@ public class UserActivity extends AppCompatActivity {
         if (dbUser.addUser(nombre, pass) == false) {
             Toast toast = Toast.makeText(this, R.string.usuarioExiste, Toast.LENGTH_LONG);
             toast.show();
+        } else {
+            Toast toast = Toast.makeText(this, R.string.usuarioCreado, Toast.LENGTH_LONG);
+            toast.show();
         }
-
-        Toast toast = Toast.makeText(this, R.string.usuarioCreado, Toast.LENGTH_LONG);
-        toast.show();
-
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
         finish();

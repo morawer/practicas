@@ -53,10 +53,13 @@ public class App {
             System.out.println("Ha ocurrido un error al cerrar el fichero");
             System.out.println(e.getMessage());
         }
+
         Scanner sc = new Scanner(System.in);
         int opc = 0;
 
         do {
+
+            int opc = 0;
             menu();
 
             System.out.println("Elige una opción: ");

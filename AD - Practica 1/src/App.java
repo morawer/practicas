@@ -59,7 +59,6 @@ public class App {
 
         do {
 
-            int opc = 0;
             menu();
 
             System.out.println("Elige una opción: ");

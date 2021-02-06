@@ -46,7 +46,7 @@ public class DaoPersona implements personaDao {
         }
         boolean alta = true;
 
-        String query = "INSERT INTO PERSONAS (NOMBRE,EDAD,PESO) VALUES(?,?,?,)";
+        String query = "INSERT INTO PERSONAS (NOMBRE,EDAD,PESO) VALUES(?,?,?)";
         try {
             PreparedStatement ps = conexion.prepareStatement(query);
             ps.setString(1, p.getNombre());
@@ -188,20 +188,19 @@ public class DaoPersona implements personaDao {
     }
 
     @Override
-    public boolean borrarPersonaCoche(int idPersona, int idCoche) {
+    public boolean borrarPersonaCoche(int idPersona) {
 
         if (!abrirConexion()) {
             return false;
         }
 
         boolean personaNoAsignada = true;
-        String query = "UPDATE PERSONAS SET IDCOCHE = ? WHERE ID = ? AND IDCOCHE = ?";
+        String query = "UPDATE PERSONAS SET IDCOCHE = 0 WHERE ID = ?";
         try {
             
             PreparedStatement ps = conexion.prepareStatement(query);
-
-            ps.setInt(2, idPersona);
-            ps.setInt(3, idCoche);
+            
+            ps.setInt(1, idPersona);
 
             int numeroFilasAfectadas = ps.executeUpdate();
             if (numeroFilasAfectadas == 0)
@@ -219,14 +218,16 @@ public class DaoPersona implements personaDao {
 
     @Override
     public List<Persona> listarPersonaCoche(int idCoche) {
+
         if (!abrirConexion()) {
             return null;
         }
+
         List<Persona> listaPersonas = new ArrayList<>();
 
         Persona persona = null;
 
-        String query = "SELECT ID,NOMBRE,EDAD,PESO FROM PERSONAS WHERE IDCOCHE = ?";
+        String query = "SELECT ID,NOMBRE,EDAD,PESO,IDCOCHE FROM PERSONAS WHERE IDCOCHE = ?";
         try {
             PreparedStatement ps = conexion.prepareStatement(query);
             ps.setInt(1, idCoche);

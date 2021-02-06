@@ -57,12 +57,17 @@ public class Persona {
         this.peso = peso;
     }
 
-    public Persona(int id, String nombre, int edad, double peso, int idCoche) {
-        this.id = id;
+    public Persona(String nombre, int edad, double peso, int idCoche) {
         this.nombre = nombre;
         this.edad = edad;
         this.peso = peso;
         this.idCoche = idCoche;
+    }
+
+    @Override
+    public String toString() {
+        return "Persona [id=" + id + ", nombre=" + nombre + ",edad=" + edad + ", peso=" + peso +  ", idCoche=" + idCoche
+                + "]";
     }
 
     

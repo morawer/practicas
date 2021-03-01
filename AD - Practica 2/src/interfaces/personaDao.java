@@ -11,7 +11,7 @@ public interface personaDao {
     public Persona buscarPersona(int id);
     public List <Persona> listarPersona();
     public boolean addPersonaCoche (int idPersona, int idCoche);
-    public boolean borrarPersonaCoche (int idPersona);
+    public boolean borrarPersonaCoche (int idPersona, int idCocheBorrar);
     public List <Persona> listarPersonaCoche(int idCoche);
 
 }

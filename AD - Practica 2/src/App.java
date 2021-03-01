@@ -158,7 +158,10 @@ public class App {
                                 System.out.println("Escriba el Id de la persona: ");
                                 int idPersonaBorrar = sc.nextInt();
 
-                                daoPersona.borrarPersonaCoche(idPersonaBorrar);
+                                System.out.println("Escriba el ID de un coche: ");
+                                int idCocheBorrar = sc.nextInt();
+
+                                daoPersona.borrarPersonaCoche(idPersonaBorrar, idCocheBorrar);
 
                                 break;
 

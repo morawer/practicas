@@ -188,18 +188,22 @@ public class DaoPersona implements personaDao {
     }
 
     @Override
-    public boolean borrarPersonaCoche(int idPersona) {
+    public boolean borrarPersonaCoche(int idPersona, int idCoche) {
 
         if (!abrirConexion()) {
             return false;
         }
 
         boolean personaNoAsignada = true;
-        String query = "UPDATE PERSONAS SET IDCOCHE = 0 WHERE ID = ?";
+        String query = "UPDATE PERSONAS SET IDCOCHE = NULL WHERE ID = ?";
+
         try {
+
+            idCoche = 0;
             
             PreparedStatement ps = conexion.prepareStatement(query);
-            
+
+            //ps.setInt(1, idCocheNulo);
             ps.setInt(1, idPersona);
 
             int numeroFilasAfectadas = ps.executeUpdate();

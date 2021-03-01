@@ -23,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
     private ArrayAdapter<String> miAdapter;
     ListView listViewTareas;
 
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
